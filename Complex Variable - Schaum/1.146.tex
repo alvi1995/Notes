@@ -1,0 +1,66 @@
+\documentclass[fleqn]{article}
+\usepackage{amsmath}
+\usepackage[margin = 1 in]{geometry}
+
+\begin{document}
+
+$\text{Prove that for any integer }m \leq 1$
+
+\begin{align*}
+(z+a)^{2m}-(z-a)^{2m} &= 4maz\prod_{k=1}^{m-1}\{z^{2}+a^{2}cot{(\frac{k\pi}{2m})}\}
+\end{align*}
+
+\textbf{Solution}
+
+\vspace{12pt}
+$\text{From roots of }(z+a)^{2m} = (z-a)^{2m}$
+
+\begin{align*}
+\bigg(\frac{z+a}{z-a}\bigg)^{2m} &= 1
+\end{align*}
+
+Next
+
+$$(\frac{z+a}{z-a}) = e^{(\frac{2\pi k}{2m})i}$$
+$$\Rightarrow(\frac{z}{a})=\frac{e^{\frac{\pi k}{m}}+1}{e^{\frac{\pi k}{m}}-1}$$
+$$\Rightarrow z = a\frac{e^{\frac{\pi k}{m}}+1}{e^{\frac{\pi k}{m}}-1}$$
+
+Here
+
+\begin{align*}
+z &= a\cdot \frac{(e^{\frac{\pi k}{m}}+1)(e^{-\frac{\pi k}{m}}-1)}{(e^{\frac{\pi k}{m}}-1)(e^{-\frac{\pi k}{m}}-1)}\\
+&=a \cdot \frac{-2i\sin(\frac{\pi k}{m})}{2-2\cos(\frac{\pi k}{m})}\\
+&=ia\cot(\frac{\pi k}{2m})......k=\pm1,\pm2,\pm3,.....,\pm(m-1)
+\end{align*}
+
+So
+
+\begin{align*}
+(z+a)^{2m}-(z-a)^{2m} &= Cz\prod_{k=1}^{m-1}\{z-ia\cot(\frac{\pi k}{2m})\}\{z+ia\cot(\frac{\pi k}{m})\}\\
+				&=Cz\prod_{k=1}^{m-1}\{z^{2}+a^{2}\cot^{2}(\frac{\pi k}{2m})\}..................(1)\\				
+\end{align*}
+
+From binomial expansion
+
+\begin{align*}
+(z+a)^{2m}-(z-a)^{2m} &= (^{2m}C_{0}z^{2m}+^{2m}C_{1}z^{2m-1}a+^{2m}C_{2}z^{2m-2}a^{2}+.....+^{2m}C_{2m-1}za^{2m-1}\\
+&+^{2m}C_{2m}a^{2m}) - (^{2m}C_{0}z^{2m}-^{2m}C_{1}z^{2m-1}a+^{2m}C_{2}z^{2m-2}a^{2}\\
+&.....-^{2m}C_{2m-1}za^{2m-1}+^{2m}C_{2m}a^{2m})\\
+&=2\bigg(^{2m}C_{1}z^{2m-1}a+^{2m}C_{3}z^{2m-3}a^{3}+........+^{2m}C_{2m-1}za^{2m-1}\bigg)\\
+&=2\cdot 2m\cdot a\cdot z\bigg(z^{2m-2}+\frac{(2m-1)(2m-2)}{3!}z^{2m-4}a^{2}+........+a^{2m-2}\bigg).........(2)\\
+\end{align*}
+
+From (1) and  (2) equating the right side, we get
+$$C= 4ma$$
+
+putting $C$ in (1) we get 
+
+\begin{align*}
+(z+a)^{2m}-(z-a)^{2m} &= 4maz\prod_{k=1}^{m-1}\{z^{2}+a^{2}cot{(\frac{k\pi}{2m})}\}
+\end{align*}
+
+\begin{center}
+[Proved]
+\end{center}
+
+\end{document}

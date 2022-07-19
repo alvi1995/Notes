@@ -1,0 +1,36 @@
+\documentclass[fleqn]{article}
+\usepackage{amsmath}
+\usepackage[margin = 1 in]{geometry}
+
+\title{Schaum's Outline - Complex Variables - Problem
+\author{Md. Mesbahose Salekeen} 1.132}
+
+\begin{document}
+\maketitle
+
+\text{Show that for any real numbers p and m, }
+
+\begin{align*}
+e^{2mi\cot^{-1}p}\Big\{\frac{pi+1}{pi-1}\Big\}^{m} &= 1
+\end{align*}
+
+\begin{align*}
+		L.H.S &= \bigg(e^{mi\cot^{-1}p}\bigg)^{2}\Big\{\frac{pi+1}{pi-1}\Big\}^{m} \\
+			  &= \bigg(\cos(\cot^{-1}p)+i\sin(\cot^{-1}p)\bigg)^{2m}\Big\{\frac{pi+1}{pi-1}\Big\}^{m}\\ 
+			  &=\bigg(\frac{p}{\sqrt{1+p^{2}}}+i\frac{1}{\sqrt{1+p^{2}}}\bigg)^{2m}\Big\{\frac{pi+1}{pi-1}\Big\}^{m}\\
+			  &=\Big\{\frac{p^{2}-1+2ip}{1+p^{2}}\Big\}^{m}\Big\{\frac{pi+1}{pi-1}\Big\}^{m}\\
+			  &=\Big\{\frac{p^{2}-1+2ip}{(1+ip)(1-ip)}\Big\}^{m}\Big\{\frac{pi+1}{pi-1}\Big\}^{m}\\
+			  &=\frac{(p^{2}-1+2ip)^{m}}{(pi+1)^{m}(1-ip)^{m}}\Big\{\frac{pi+1}{pi-1}\Big\}^{m}\\
+			  &=\frac{(p^{2}-1+2ip)^{m}}{(-1)^{m}(pi-1)^{2m}}\\
+			  &=\frac{(p+i)^{2m}}{(-1)^{m}(pi-1)^{2m}}\\
+			  &=\frac{(p+i)^{2m}}{(-1)^{m}(pi-1)^{2m}}\\
+			  &=\frac{i^{2m}(\frac{p}{i}+1)^{2m}}{(-1)^{m}(pi-1)^{2m}}\\
+			  &=\frac{(-pi+1)^{2m}}{(pi-1)^{2m}}\\
+			  &=1
+\end{align*}
+
+\begin{flushright}
+[Showed]
+\end{flushright}
+
+\end{document}

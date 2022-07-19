@@ -1,0 +1,70 @@
+\documentclass[fleqn]{article}
+\usepackage{amsmath}
+\usepackage[margin = 1 in]{geometry}
+
+\title{Schaum - Complex Variable - Problem 1.143a}
+\author{Md. Mesbahose Salekeen}
+
+\begin{document}
+\maketitle
+
+$\text{ Prove that }$
+
+\begin{align*}
+\cos(\theta)+\cos(\theta+\alpha)+\cos(\theta+2\alpha)+....+\cos(\alpha+n\theta) &=\frac{\sin\frac{1}{2}(n+1)\alpha}{\sin\frac{1}{2}\alpha}\cos(\theta+\frac{1}{2}n\alpha)
+\end{align*}
+
+$\textbf{Solution:}$
+
+$\hspace{80pt}\text{We know} \cos(\theta)=\frac{1}{2}\bigg(e^{i\theta}+e^{-i\theta}\bigg)$
+
+\begin{align*}
+	L.H.S &= \cos(\theta)+\cos(\theta+\alpha)+\cos(\theta+2\alpha)+....+\cos(\alpha+n\theta)\\
+		  &=\frac{1}{2}\bigg(e^{i\theta}+e^{-i\theta}+e^{(\theta+\alpha)i}+e^{-(\theta+\alpha)i}+e^{(\theta+2\alpha)i}+e^{-(\theta+2\alpha)i}+......+e^{(\theta+n\alpha)i}+e^{-(\theta+n\alpha)i}\bigg)\\
+		  &=\frac{1}{2}e^{i\theta}\bigg(1+e^{\alpha i}+e^{2\alpha i}+.....+e^{n\alpha i}\bigg)+\frac{1}{2}e^{-i\theta}\bigg(1+e^{-\alpha i}+e^{-2\alpha i}+.....+e^{-n\alpha i}\bigg)\\	  		  
+\end{align*}
+
+$\text{from geometric series }\sum_{k=0}^{n}ar^{n}=\frac{a(r^{n+1}-1)}{r-1}$
+
+\vspace{.1 in}
+\textbf{So}
+
+\begin{align*}
+L.H.S &= \frac{e^{i\theta}}{2}\Big\{\frac{e^{\alpha(n+1)i}-1}{e^{\alpha i}-1}\Big\}+\frac{e^{-i\theta}}{2}\Big\{\frac{1-e^{-\alpha(n+1)i}}{1-e^{-\alpha i}}\Big\}\\
+	  &=\frac{e^{i\theta}}{2}\Big\{\frac{e^{\alpha(n+1)i}-1}{e^{\alpha i}-1}\Big\}+\frac{e^{-i\theta}}{2}\Big\{\frac{1-\frac{1}{e^{\alpha(n+1)i}}}{1-\frac{1}{e^{\alpha i}}}\Big\}\\
+	  &=\frac{e^{i\theta}}{2}\Big\{\frac{e^{\alpha(n+1)i}-1}{e^{\alpha i}-1}\Big\}+\frac{e^{-i\theta}}{2}\frac{e^{\alpha i}}{e^{\alpha(n+1)i}}\Big\{\frac{e^{\alpha(n+1)i}-1}{e^{\alpha i}-1}\Big\}\\
+	  &=\Big\{\frac{e^{\alpha(n+1)i}-1}{e^{\alpha i}-1}\Big\}\Big\{\frac{e^{i\theta}}{2}+\frac{1}{2e^{i\theta}}\frac{1}{e^{n\alpha}}\Big\}\\
+	  &=\Big\{\frac{e^{\alpha(n+1)i}-1}{e^{\alpha i}-1}\Big\}\Big\{\frac{e^{i\theta}}{2}+\frac{1}{2e^{(\theta+\alpha n)i}}\Big\}..........(1)\\
+\end{align*}
+
+Now
+
+\begin{align*}	
+\Big\{\frac{e^{\alpha(n+1)i}-1}{e^{\alpha i}-1}\Big\}=& \Big\{\frac{e^{\alpha(n+1)i}-1}{e^{\alpha i}-1}\Big\}\Big\{\frac{e^{-\alpha i}-1}{e^{-\alpha i}-1}\Big\}\\
+	&=\frac{(e^{\alpha(n+1)i}-1)(e^{-\alpha i}-1)}{1+1-e^{\alpha i}-e^{-\alpha i}}\\
+	&=\frac{e^{\alpha ni}-e^{-\alpha i}+1-e^{\alpha(n+1)i}}{2-2\cos\alpha}...........(2)\\
+\end{align*}
+
+Also
+
+\begin{align*}
+\Big\{\frac{e^{i\theta}}{2}+\frac{1}{2e^{(\alpha n+\theta)i}}\Big\} &= \frac{e^{(\alpha n+2\theta)i}+1}{2e^{(\alpha n+\theta)i}}\\
+		&=\frac{(e^{(\alpha n+2\theta)i}+1)\cdot e^{-(\alpha n+\theta)i}}{2e^{(\alpha n+\theta)i}\cdot e^{-(\alpha n+\theta)i}}\\
+		&=\frac{e^{i\theta}+e^{-(\alpha n+\theta)}}{2}...........(3)\\
+\end{align*}
+
+Putting (2) and (3) into (1) we get
+
+\begin{align*}
+L.H.S &= \frac{e^{(\alpha n+\theta)i}+e^{-(\alpha n+\theta)i}-e^{(\alpha-\theta)}-e^{-(\alpha-\theta)}+e^{i\theta}+e^{-i\theta}-e^{\{\alpha(n+1)+\theta \}i}-e^{-\{\alpha(n+1)+\theta\}i}}{2(2-2\cos\alpha)}\\
+&=\frac{\cos(\alpha n+\theta)-cos(\theta-\alpha)+cos(\theta)-cos\{\alpha(n+1)+\theta\}}{2-2\cos\alpha}\\
+&=\frac{2\sin(\frac{\alpha}{2})\sin(\alpha n +\theta+\frac{\alpha}{2})-2\sin(\theta-\frac{\alpha}{2})\sin(\frac{\alpha}{2})}{2-2cos\alpha}\\
+&=\frac{\sin(\alpha n+\theta+\frac{\alpha}{2})-\sin(\theta-\frac{\alpha}{2})}{2\sin(\frac{\alpha}{2})}\\
+&=\frac{\cos(\theta+\frac{\alpha n}{2})\sin(\frac{1}{2}(n+1)\alpha)}{\sin(\frac{\alpha}{2})}
+\end{align*}
+
+\begin{flushright}
+[Proved]
+\end{flushright}
+
+\end{document}

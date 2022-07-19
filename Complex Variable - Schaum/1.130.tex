@@ -1,0 +1,132 @@
+\documentclass[fleqn]{article}
+\usepackage{amsmath}
+\usepackage[margin = 1 in]{geometry}
+
+\title{Shaum series - Complex Variable - Problem 1.130}
+\author{Md. Mesbahose Salekeen}
+
+\begin{document}
+\maketitle
+
+prove that 
+
+$$\cos^{n}(\phi)= \frac{1}{2^{n-1}}\{\cos n\phi+\cos(n-2)\phi+\frac{n(n-1)}{2!}\cos(n-4)\phi+..........+R_{n}\}$$
+
+where \[ \hspace{48pt} R_{n} = \begin{cases} 
+      \frac{n!}{[\frac{(n-1)}{2}]![\frac{(n+1)}{2}]!}\cos(\phi) & \text{if n is odd} \\
+      \frac{n!}{2[(\frac{n}{2})!]^{2}} & \text{if n is even} 
+   \end{cases}
+\]
+
+\textbf{Proof}
+
+We know,
+$$\cos(\phi) = \frac{1}{2}\bigg(e^{i\phi}+e^{-i\phi}\bigg)$$
+
+so 
+$$\hspace{10pt}\cos^{n}(\phi) = \frac{1}{2^{n}}\bigg(e^{i\phi}+e^{-i\phi}\bigg)^{n}$$
+
+
+\begin{align*}
+\cos^{n}(\phi) &= \frac{1}{2^{n}}\bigg(e^{i\phi}+e^{-i\phi}\bigg)^{n}\\
+            &= \frac {1}{2^{n}}\{^{n}C_{0}e^{ni\phi}+^{n}C_{1}e^{(n-1)i\phi}e^{-i\phi}+^{n}C_{2}e^{(n-2)i\phi}e^{-2i\phi}+...........\\
+            &+^{n}C_{n-1}e^{\{n-(n-1)\}i\phi}e^{-(n-1)i\phi}+^{n}C_{n}e^{i\phi}e^{-ni\phi}\}\\
+            &= \frac{1}{2^{n}}\{e^{ni\phi}+ne^{(n-2)i\phi}+\frac{n(n-1)}{2!}e^{(n-4)i\phi}+.............+ne^{-(n-2)i\phi}+e^{-in\phi}\}\\
+            &=\frac{1}{2^{n}}\sum_{k=0}^{n}\binom{n}{k}e^{(n-2k)i\phi}
+\end{align*}
+
+so 
+
+$$\cos^{n}(\phi)=\frac{1}{2^{n}}\sum_{k=0}^{n}\binom{n}{k}e^{(n-2k)i\phi}....................(1)$$
+
+from law of combination we know,
+
+$$^{n}C_{r} = ^{n}C_{n-r}$$
+
+so 
+
+$$\frac{1}{2^{n}}\sum_{k=0}^{n}\binom{n}{k}e^{(n-2k)i\phi} = \frac{1}{2^{n}}\sum_{k=0}^{n}\binom{n}{n-k}e^{(2k-n)i\phi}$$
+
+which gives
+
+\begin{align*}
+\cos^{n}(\phi) &=\frac{1}{2^{n}}\sum_{k=0}^{n}\binom{n}{n-k}e^{(2k-n)i\phi}\\
+			   &= \frac{1}{2^{n}}\sum_{k=0}^{n}\binom{n}{n-k}e^{-(n-2k)i\phi}\\
+			   &= \frac{1}{2^{n}}\sum_{k=0}^{n}\binom{n}{k}e^{-(n-2k)i\phi}
+\end{align*}
+
+\vspace{1 cm}
+
+$\frac{(1)+(2)}{2}$ gives
+
+\begin{align*}
+\cos^{n}(\phi) &= \frac{1}{2^{n}}\{\sum_{k=0}^{n}\frac{1}{2}\bigg(\binom{n}{k}e^{(n-2k)i\phi}+\sum_{k=0}^{n}\binom{n}{k}e^{-(n-2k)i\phi}\}\bigg)\\
+			   &=\frac{1}{2^{n}}\{\sum_{k=0}^{n}\binom{n}{k}\cos(n-2k)\phi\}\\
+			   &=\frac{1}{2^{n}}\{\cos(n\phi)+n\cos(n-2)\phi+ \frac{n(n-1)}{2!}\cos(n-4)\phi+........+n\cos(n-2)\phi+\cos(n\phi)\}\\
+			   & \hspace{340pt}..............(3)
+\end{align*}
+
+$\text{if n is odd there will be n+1 even terms}$
+
+\begin{table}[hbtp]
+\caption{odd relationship}
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+
+\hline
+0 & 1 & 2 &..... &$\frac{n-1}{2}$\\
+\hline
+n & n-1 & n-2 &...&$\frac{n+1}{2}$\\
+\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+$\text{from..(3) we get}$
+
+\begin{align*}
+\cos^{n}(\phi) &= \frac{1}{2^{n}}\{\cos(n\phi)+n\cos(n-2)\phi+\frac{n(n-1)}{2!}\cos(n-4)\phi+....+\\
+			   & \binom{n}{\frac{n-1}{2}}\cos\{n-2\frac{(n-1)}{2}\}+ \binom{n}{\frac{n+1}{2}}\cos\{n-2\frac{(n+1)}{2}\}+\\
+			   &.......+n\cos(n-2)\phi+\cos(n\phi)\}.........................(4)\\	   
+\end{align*}
+
+Now $$\binom{n}{(\frac{n-1}{2})} = \binom{n}{(\frac{n+1}{2})}=\frac{n!}{(\frac{n-1}{2})!(\frac{n+1}{2})!}$$
+
+$\text{from ...(4) we get}$
+
+\begin{align*}
+\cos^{n}(\phi) &= \frac{1}{2^{n-1}} \{\cos(n\phi)+n\cos(n-2)\phi+\frac{n(n-1)}{2}\cos(n-4)\phi+...............+\frac{n!}{(\frac{n-1}{2})!(\frac{n+1}{2})!}\cos(\phi)\}\\
+\end{align*}
+
+$\text{if n is even there will be n+1 odd terms}$
+
+\begin{table}[hbtp]
+\caption{even relationship}
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|l|}
+
+\hline
+0 & 1 & 2 &..... &$\frac{n}{2}-1$ & $\frac{n}{2}$\\
+\hline
+n & n-1 & n-2 &...&$\frac{n}{2}+1$ & \\
+\hline
+
+\end{tabular}
+\end{center}
+\end{table}
+
+\vspace{1.5 in}
+
+$\text{from ....(3) we get}$
+
+\begin{align*}
+\cos^{n}(\phi) &= \frac{1}{2^{n}}\{\cos(n\phi)+n\cos(n-2)\phi+\frac{n(n-1)}{2!}\cos(n-4)\phi+....+\\
+			   & \frac{n!}{[(\frac{n}{2})!]^{2}}+.......+n\cos(n-2)\phi+\cos(n\phi)\}\\	
+			   &= \frac{1}{2^{n-1}}\{\cos(n\phi)+n\cos(n-2)\phi+\frac{n(n-1)}{2!}\cos(n-4)\phi+......\\
+			   &..+\frac{n!}{[(\frac{n}{2})!]^{2}} \}   
+\end{align*}
+
+$$\text{\textbf{[Proved]}}$$
+
+\end{document}
