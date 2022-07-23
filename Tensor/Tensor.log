@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.17)  20 JUL 2022 04:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.17)  24 JUL 2022 04:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -591,6 +591,12 @@ File: tikzlibrarybackgrounds.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@layerbox@background=\box85
 \pgf@layerboxsaved@background=\box86
 )
+(D:\Program_Files\MiKTeX 2.9\tex/generic/pgf/frontendlayer/tikz/libraries/graph
+s\tikzlibrarygraphs.code.tex
+File: tikzlibrarygraphs.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\tikz@lib@auto@number=\count299
+\tikz@qnode@count=\count300
+)
 (D:\Program_Files\MiKTeX 2.9\tex/latex/tools\hhline.sty
 Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
 )
@@ -604,8 +610,8 @@ Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 \t@pgfplots@tokb=\toks43
 \t@pgfplots@tokc=\toks44
 \pgfplots@tmpa=\dimen281
-\c@pgfplots@coordindex=\count299
-\c@pgfplots@scanlineindex=\count300
+\c@pgfplots@coordindex=\count301
+\c@pgfplots@scanlineindex=\count302
 
 (D:\Program_Files\MiKTeX 2.9\tex/generic/pgfplots/sys\pgfplotssysgeneric.code.t
 ex))
@@ -621,13 +627,13 @@ ucture.code.tex)
 uctureext.code.tex)
 (D:\Program_Files\MiKTeX 2.9\tex/generic/pgfplots/liststructure\pgfplotsarray.c
 ode.tex
-\c@pgfplotsarray@tmp=\count301
+\c@pgfplotsarray@tmp=\count303
 )
 (D:\Program_Files\MiKTeX 2.9\tex/generic/pgfplots/liststructure\pgfplotsmatrix.
 code.tex)
 (D:\Program_Files\MiKTeX 2.9\tex/generic/pgfplots/numtable\pgfplotstableshared.
 code.tex
-\c@pgfplotstable@counta=\count302
+\c@pgfplotstable@counta=\count304
 \t@pgfplotstable@a=\toks45
 )
 (D:\Program_Files\MiKTeX 2.9\tex/generic/pgfplots/liststructure\pgfplotsdeque.c
@@ -639,7 +645,7 @@ ode.tex)
 ex)
 (D:\Program_Files\MiKTeX 2.9\tex/generic/pgfplots/libs\pgflibrarypgfplots.surfs
 hading.code.tex
-\c@pgfplotslibrarysurf@no=\count303
+\c@pgfplotslibrarysurf@no=\count305
 
 (D:\Program_Files\MiKTeX 2.9\tex/generic/pgfplots/sys\pgflibrarypgfplots.surfsh
 ading.pgfsys-pdftex.def)))
@@ -670,7 +676,7 @@ tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen284
 \pgfdecoratedinputsegmentremainingdistance=\dimen285
 \pgf@decorate@distancetomove=\dimen286
-\pgf@decorate@repeatstate=\count304
+\pgf@decorate@repeatstate=\count306
 \pgfdecorationsegmentamplitude=\dimen287
 \pgfdecorationsegmentlength=\dimen288
 )
@@ -686,7 +692,7 @@ ibrarydecorations.pathreplacing.code.tex
 corations.pathreplacing.code.tex))
 (D:\Program_Files\MiKTeX 2.9\tex/generic/pgfplots/libs\tikzlibrarypgfplots.cont
 ourlua.code.tex)
-\pgfplots@numplots=\count305
+\pgfplots@numplots=\count307
 \pgfplots@xmin@reg=\dimen289
 \pgfplots@xmax@reg=\dimen290
 \pgfplots@ymin@reg=\dimen291
@@ -708,17 +714,36 @@ Package: expl3 2022-07-04 L3 programming layer (loader)
 
 (D:\Program_Files\MiKTeX 2.9\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-07-01 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count306
+\l__color_backend_stack_int=\count308
 \l__pdf_internal_box=\box88
 ))
 Package: l3keys2e 2022-06-22 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count307
-\l__lipsum_a_int=\count308
-\l__lipsum_b_int=\count309
+\g__lipsum_par_int=\count309
+\l__lipsum_a_int=\count310
+\l__lipsum_b_int=\count311
 
 (D:\Program_Files\MiKTeX 2.9\tex/latex/lipsum\lipsum.ltd.tex))
+(D:\Program_Files\MiKTeX 2.9\tex/latex/mathtools\empheq.sty
+Package: empheq 2017/03/31 v2.15 Emphasizing equations
+\l_EQ_equationtype_int=\count312
+\l_EQ_alignmentmode_int=\count313
+\l_EQ_totalwidth_dim=\dimen295
+\l_EQ_displaywidth_dim=\dimen296
+\l_EQ_temp_linewidth_dim=\dimen297
+\l_EQ_linewidth_dim=\dimen298
+\EmphEqdelimitershortfall=\dimen299
+\EmphEqdelimiterfactor=\count314
+\g_EQ_toptag_height_dim=\dimen300
+\g_EQ_bottomtag_depth_dim=\dimen301
+\g_EQ_toprow_height_dim=\dimen302
+\g_EQ_bottomrow_depth_dim=\dimen303
+\g_EQ_widesttag_dim=\dimen304
+\EQ_mathdisplay_box=\box89
+\EQ_tag_box=\box90
+\g_EQ_temprow_int=\count315
+)
 (D:\Program_Files\MiKTeX 2.9\tex/latex/amsfonts\euscript.sty
 Package: euscript 2009/06/22 v3.00 Euler Script fonts
 LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
@@ -741,19 +766,19 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
 (D:\Program_Files\MiKTeX 2.9\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count310
+\etb@tempcnta=\count316
 )
-\tcb@titlebox=\box89
-\tcb@upperbox=\box90
-\tcb@lowerbox=\box91
-\tcb@phantombox=\box92
-\c@tcbbreakpart=\count311
-\c@tcblayer=\count312
-\c@tcolorbox@number=\count313
-\tcb@temp=\box93
-\tcb@temp=\box94
+\tcb@titlebox=\box91
+\tcb@upperbox=\box92
+\tcb@lowerbox=\box93
+\tcb@phantombox=\box94
+\c@tcbbreakpart=\count317
+\c@tcblayer=\count318
+\c@tcolorbox@number=\count319
 \tcb@temp=\box95
 \tcb@temp=\box96
+\tcb@temp=\box97
+\tcb@temp=\box98
 )
 (D:\Program_Files\MiKTeX 2.9\tex/latex/tcolorbox\tcbhooks.code.tex
 Library (tcolorbox): 'tcbhooks.code.tex' version '5.1.1'
@@ -769,17 +794,17 @@ Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 ))
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box97
-\tcb@totalupperbox=\box98
-\tcb@totallowerbox=\box99
+\tcb@testbox=\box99
+\tcb@totalupperbox=\box100
+\tcb@totallowerbox=\box101
 )
 (D:\Program_Files\MiKTeX 2.9\tex/latex/tcolorbox\tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '5.1.1'
-\tcb@waterbox=\box100
+\tcb@waterbox=\box102
 (D:\Program_Files\MiKTeX 2.9\tex/latex/tcolorbox\tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '5.1.1'
 ))
-\boxedalignbox=\box101
+\boxedalignbox=\box103
 LaTeX Font Info:    Redeclaring symbol font `rsfs' on input line 41.
 LaTeX Font Info:    Overwriting symbol font `rsfs' in version `normal'
 (Font)                  U/rsfs/m/n --> U/rsfs/m/n on input line 41.
@@ -852,16 +877,16 @@ LaTeX Font Info:    ... okay on input line 62.
 
 (D:\Program_Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count314
-\scratchdimen=\dimen295
-\scratchbox=\box102
-\nofMPsegments=\count315
-\nofMParguments=\count316
+\scratchcounter=\count320
+\scratchdimen=\dimen305
+\scratchbox=\box104
+\nofMPsegments=\count321
+\nofMParguments=\count322
 \everyMPshowfont=\toks48
-\MPscratchCnt=\count317
-\MPscratchDim=\dimen296
-\MPnumerator=\count318
-\makeMPintoPDFobject=\count319
+\MPscratchCnt=\count323
+\MPscratchDim=\dimen306
+\MPnumerator=\count324
+\makeMPintoPDFobject=\count325
 \everyMPtoPDFconversion=\toks49
 ) (D:\Program_Files\MiKTeX 2.9\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -874,6 +899,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.18} (current compat level: 1.11).
 
+\Hy@linkcounter=\count326
 LaTeX Font Info:    Trying to load font information for U+msa on input line 64.
 
 (D:\Program_Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd
@@ -934,37 +960,44 @@ File: 7.jpg Graphic file (type jpg)
 Package pdftex.def Info: 7.jpg  used on input line 519.
 (pdftex.def)             Requested size: 254.63818pt x 237.13535pt.
  [8 <./5.jpg>] [9 <./6.jpg> <./7.jpg>]
-[10] (Tensor.aux)
+[10]
+<8.png, id=58, 342.5297pt x 341.77687pt>
+File: 8.png Graphic file (type png)
+<use 8.png>
+Package pdftex.def Info: 8.png  used on input line 635.
+(pdftex.def)             Requested size: 256.89664pt x 256.33202pt.
+ [11 <./8.png>] [12] [13] [14] [15] (Tensor.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 31962 strings out of 478304
- 826652 string characters out of 2843328
- 1355452 words of memory out of 3000000
- 49873 multiletter control sequences out of 15000+600000
+ 32938 strings out of 478304
+ 852818 string characters out of 2843328
+ 1430819 words of memory out of 3000000
+ 50840 multiletter control sequences out of 15000+600000
  481041 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,32n,89p,723b,1086s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 84i,32n,89p,730b,1087s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {D:/Program_Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<D:/Pr
 ogram_Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Program_Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/Program_Files/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Program_Files/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmmi12.pfb><D:/Program_Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmmi8.pfb><D:/Program_Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmr10.pfb><D:/Program_Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr12.pfb><D:/Program_Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17
-.pfb><D:/Program_Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/P
-rogram_Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Program_F
-iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Program_Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><D:/Program_Files/MiKTeX 
-2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><D:/Program_Files/MiKTeX 2.9
-/fonts/type1/public/cm-super/sfrm1200.pfb><D:/Program_Files/MiKTeX 2.9/fonts/ty
-pe1/public/cm-super/sfrm1440.pfb>
-Output written on Tensor.pdf (10 pages, 440340 bytes).
+e1/public/amsfonts/cm/cmmi7.pfb><D:/Program_Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmmi8.pfb><D:/Program_Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr10.pfb><D:/Program_Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12
+.pfb><D:/Program_Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><D:/
+Program_Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Program_Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Program_Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Program_Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/symbols/msam10.pfb><D:/Program_Files/MiKTeX 2.9/fonts
+/type1/public/amsfonts/symbols/msbm10.pfb><D:/Program_Files/MiKTeX 2.9/fonts/ty
+pe1/public/cm-super/sfrm1200.pfb><D:/Program_Files/MiKTeX 2.9/fonts/type1/publi
+c/cm-super/sfrm1440.pfb>
+Output written on Tensor.pdf (15 pages, 492602 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
+ 145 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

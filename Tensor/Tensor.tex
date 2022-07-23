@@ -3,10 +3,10 @@
 \usepackage[margin=.44 in]{geometry}
 \usepackage{amsmath,amsfonts,textcomp,amssymb,amscd,amsthm,mathrsfs,mathtools}
 \usepackage{graphicx,tikz}
-\usetikzlibrary{matrix,calc,arrows.meta,angles,quotes,positioning,shapes,fit,backgrounds}
+\usetikzlibrary{matrix,calc,arrows.meta,angles,quotes,positioning,shapes,fit,backgrounds,graphs}
 \usepackage{hhline,xcolor}
 \usepackage{pgfplots}
-\usepackage{lipsum}
+\usepackage{lipsum,empheq}
 \usepackage[mathscr]{euscript}
 \usepackage{tcolorbox}
 \tcbuselibrary{hooks, breakable, skins}
@@ -546,6 +546,290 @@
 		\end{align*}
 	\end{center}
 
+	$$L(\overrightarrow{e_{i}}) = L^{k}_{i}\overrightarrow{e_{k}}$$
+	$$L(\widetilde{\overrightarrow{e_{i}}}) = \widetilde{L}^{l}_{i}\widetilde{\overrightarrow{e_{l}}}$$
+	
+	\begin{equation}
+		\begin{split}
+			L(\overrightarrow{V}) &= L(\widetilde{v}^{j}\widetilde{\overrightarrow{e_{j}}}) = L(v^{i}\overrightarrow{e_{i}})\\
+								  &= \widetilde{v}^{j}L(\widetilde{\overrightarrow{e_{j}}}) = v^{i}L(\overrightarrow{e_{i}})\\
+								  &= \widetilde{v}^{j}\widetilde{L}^{l}_{i}\widetilde{\overrightarrow{e_{l}}} = v^{i}L^{k}_{i}\overrightarrow{e_{k}}\\
+								  &= \widetilde{v}^{j}\widetilde{L}^{l}_{i}\widetilde{\overrightarrow{e_{l}}} = F^{i}_{m}\widetilde{v}^{m}L^{k}_{i} B^{n}_{k}\widetilde{\overrightarrow{e_{n}}}= F^{i}_{j}\widetilde{v}^{j}L^{k}_{i} B^{l}_{k}\widetilde{\overrightarrow{e_{l}}}\\
+								  &= \widetilde{L}^{l}_{i} = F^{i}_{j}L^{k}_{i}B^{l}_{k}
+		\end{split}
+	\end{equation}
+
+	Similarly, $L_{s}^{t} = F_{l}^{s}\widetilde{L}^{l}_{i}B^{i}_{t}$
+	
+	\begin{center}
+		\begin{tabular}{ccc}
+			\framebox[2cm][c]{$L(\overrightarrow{V}\vert_{\overrightarrow{e_{i}}})$} & $\rightarrow$ & \framebox[1cm][c]{\begin{tabular}{c}
+					$v^{1}$\\
+					$v^{2}$\\
+					$v^{3}$
+				\end{tabular}}\\
+			$\downarrow$ & & $\downarrow$ \\
+			\framebox[2cm][c]{$L(\overrightarrow{V}\vert_{\widetilde{\overrightarrow{e_{i}}}})$} & $\rightarrow$ & \framebox[1cm][c]{\begin{tabular}{c}
+					$\widetilde{v}^{1}$\\
+					$\widetilde{v}^{2}$\\
+					$\widetilde{v}^{3}$\\
+			\end{tabular}}
+		\end{tabular}
+	\end{center}
+
+	If $\overrightarrow{W} = L(\overrightarrow{V}) = W^{i} = F^{i}_{j}v^{j}$
+	
+	\section*{Metric Tensor}
+	Metric tensor helps us the length and angles in space.
+	
+	In order to get the length of the vector, the usual pythagorian system does not work in case of other than orthonormal basis. The actual method is to do dot product.
+	
+	\begin{align*}
+		||v||^{2} &= \overrightarrow{V}\cdot\overrightarrow{V}\\
+				  &= (v^{1}\overrightarrow{e_{1}} + v^{2}\overrightarrow{e_{2}} +v^{3}\overrightarrow{e_{3}})\cdot(v^{1}\overrightarrow{e_{1}} + v^{2}\overrightarrow{e_{2}} +v^{3}\overrightarrow{e_{3}})\\
+				  &= v^{1}v^{1}(\overrightarrow{e_{}}\cdot\overrightarrow{e_{}}) + v^{1}v^{2}(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{2}}) + v^{1}v^{3}(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{3}}) + v^{2}v^{1}(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{1}})  \\
+				  &+ v^{2}v^{2}(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{2}}) + v^{2}v^{3}(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{3}}) + v^{3}v^{1}(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{1}}) + v^{3}v^{2}(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{2}}) \\
+				  &+ v^{3}v^{3}(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{3}})\\
+				  &= (v^{1})^{2}(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{1}}) + (v^{2})^{2}(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{2}}) + (v^{3})^{2}(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{3}}) + 2 v^{1}v^{2}(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{2}}) + 2v^{2}v^{3}(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{3}})\\
+				  &+ 2v^{3}v^{1}(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{1}})\\
+				  &= \begin{bmatrix}
+				  	v^{1} & v^{2} & v^{3}
+				  \end{bmatrix}\begin{bmatrix}
+				  1 & 0 & 0\\
+				  0 & 1 & 0\\
+				  0 & 0 & 1
+			  \end{bmatrix}\begin{bmatrix}
+			  v^{1}\\
+			  v^{2}\\
+			  v^{3} 
+		  \end{bmatrix}  = \widetilde{\overrightarrow{V}}\cdot\widetilde{\overrightarrow{V}}\\
+	  			&= (\widetilde{v}^{1})^{2}(\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{1}}}) + (\widetilde{v}^{2})^{2}(\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{2}}}) + (\widetilde{v}^{3})^{2}(\widetilde{\overrightarrow{e_{3}}}\cdot\widetilde{\overrightarrow{e_{3}}}) + (\widetilde{v}^{1}\widetilde{v}^{2})(\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{2}}}) + (\widetilde{v}^{2}\widetilde{v}^{3})(\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{3}}}) \\
+	  			&+(\widetilde{v}^{3}\widetilde{v}^{1})(\widetilde{\overrightarrow{e_{3}}}\cdot\widetilde{\overrightarrow{e_{1}}})\\
+	  			&= \begin{bmatrix}
+	  				\widetilde{v}^{1} & \widetilde{v}^{2} & \widetilde{v}^{3}
+	  			\end{bmatrix}\begin{bmatrix}
+	  			\widetilde{v}^{1}(\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{1}}}) + \widetilde{v}^{2}(\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{2}}}) + \widetilde{v}^{3}(\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{3}}})\\
+	  			\widetilde{v}^{1}(\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{1}}}) + \widetilde{v}^{2}(\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{2}}}) + \widetilde{v}^{3}(\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{3}}})\\
+	  			\widetilde{v}^{1}(\widetilde{\overrightarrow{e_{3}}}\cdot\widetilde{\overrightarrow{e_{1}}}) + \widetilde{v}^{2}(\widetilde{\overrightarrow{e_{3}}}\cdot\widetilde{\overrightarrow{e_{2}}}) + \widetilde{v}^{3}(\widetilde{\overrightarrow{e_{3}}}\cdot\widetilde{\overrightarrow{e_{3}}})
+  			\end{bmatrix}\\
+  			  &= \begin{bmatrix}
+  			  	\widetilde{v}^{1} & \widetilde{v}^{2} & \widetilde{v}^{3}
+  			  \end{bmatrix}\begin{bmatrix}
+  			  (\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{1}}}) & (\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{2}}}) & (\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{3}}})\\
+  			  (\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{1}}}) & (\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{2}}}) & (\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{3}}})\\
+  			  (\widetilde{\overrightarrow{e_{3}}}\cdot\widetilde{\overrightarrow{e_{1}}}) & (\widetilde{\overrightarrow{e_{3}}}\cdot\widetilde{\overrightarrow{e_{2}}}) & (\widetilde{\overrightarrow{e_{3}}}\cdot\widetilde{\overrightarrow{e_{3}}})\\
+  		  \end{bmatrix}\begin{bmatrix}
+  		  \widetilde{v}^{1}\\
+  		  \widetilde{v}^{2}\\
+  		  \widetilde{v}^{3}
+  	  \end{bmatrix}\begin{bmatrix}
+  	  \text{middle matrix is}\\
+  	  \text{called metric}\\
+  	  \text{tensor and symmetric}\\
+  	  \text{diagonally}
+    \end{bmatrix}
+	\end{align*}
+
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[scale=0.75]{8.png}
+			\label{f8}
+		\end{center}
+	\end{figure}
+
+	$$\widetilde{\overrightarrow{e_{1}}} = 2\overrightarrow{e_{1}} + \overrightarrow{e_{2}}$$
+	$$\widetilde{\overrightarrow{e_{2}}} = -\overrightarrow{e_{1}} + 3\overrightarrow{e_{2}}$$
+
+	$$\overrightarrow{e_{1}}  = \frac{3}{7}\widetilde{\overrightarrow{e_{1}}} - \frac{1}{7}\widetilde{\overrightarrow{e_{2}}}$$
+	
+	$$\overrightarrow{e_{2}}  = \frac{1}{7}\widetilde{\overrightarrow{e_{1}}} + \frac{2}{7}\widetilde{\overrightarrow{e_{2}}}$$
+
+\begin{center}
+	\colorboxed[rgb]{.1,.5,.3}{
+		\begin{tabular}{c}
+			($\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{1}}}$) = $5$\\
+			$(\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{2}}}) = (\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{1}}})$ = $1$\\
+			$(\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{2}}}) = 10$
+		\end{tabular}
+	}
+\end{center}
+	
+	\begin{center}
+		\colorboxed[rgb]{.1,.5,.3}{
+			\begin{tabular}{c}
+				$\overrightarrow{e_{1}}\cdot\overrightarrow{e_{1}}$ = $(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{2}})$ = 1\\
+				$\overrightarrow{e_{1}}\cdot\overrightarrow{e_{2}}$ = $\overrightarrow{e_{2}}\cdot\overrightarrow{e_{1}}$ = 0\\
+			\end{tabular}
+		}
+	\end{center}
+
+	In general,
+	
+	\begin{center}
+		\colorboxed[rgb]{.1,.5,.3}{
+			\begin{tabular}{c}
+				$\overrightarrow{e_{i}}\cdot\overrightarrow{e_{j}} = \delta_{ij},$ in orthonormal basis
+			\end{tabular}
+		}
+	\end{center}
+
+	\begin{align*}
+		\overrightarrow{V}\cdot\overrightarrow{V} &= (3\overrightarrow{e_{1}} + 4\overrightarrow{e_{2}})\cdot(3\overrightarrow{e_{1}} + 4\overrightarrow{e_{2}})\\
+												  &= 3\cdot 3 (\overrightarrow{e_{1}}\cdot\overrightarrow{e_{1}}) + 3\cdot 4(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{2}}) + 4\cdot 3(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{1}}) + 4\cdot 4(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{2}})\\
+		\overrightarrow{V}\cdot\overrightarrow{V} &= ||v||^{2} = 25,\quad\quad\therefore v = 5										  
+	\end{align*}
+
+	\begin{align*}
+		\overrightarrow{V}\cdot\overrightarrow{V} &= \bigg\{3\bigg(\frac{3}{7}\widetilde{\overrightarrow{e_{1}}} - \frac{1}{7}\widetilde{\overrightarrow{e_{2}}}\bigg) + 4\bigg(\frac{1}{7}\widetilde{\overrightarrow{e_{1}}} + \frac{2}{7}\widetilde{\overrightarrow{e_{2}}}\bigg)\bigg\}\cdot\bigg\{3\bigg(\frac{3}{7}\widetilde{\overrightarrow{e_{1}}} - \frac{1}{7}\widetilde{\overrightarrow{e_{2}}}\bigg) + 4\bigg(\frac{1}{7}\widetilde{\overrightarrow{e_{1}}} + \frac{2}{7}\widetilde{\overrightarrow{e_{2}}}\bigg)\bigg\}\\
+												  &= \bigg\{\frac{13}{7}(\widetilde{\overrightarrow{e_{1}}}) + \frac{5}{7}(\widetilde{\overrightarrow{e_{2}}})\bigg\}\cdot\bigg\{\frac{13}{7}(\widetilde{\overrightarrow{e_{1}}}) + \frac{5}{7}(\widetilde{\overrightarrow{e_{2}}})\bigg\}\\
+												  &= \frac{169}{49}\big(\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{1}}}\big) + \frac{13}{7}\cdot\frac{5}{7}\big(\widetilde{\overrightarrow{e_{1}}}\cdot\widetilde{\overrightarrow{e_{2}}}\big) + \frac{5}{7}\cdot\frac{13}{7}\big(\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{1}}}\big) + \frac{25}{47}\big(\widetilde{\overrightarrow{e_{2}}}\cdot\widetilde{\overrightarrow{e_{2}}}\big)\\
+												  &= \frac{169}{49}\cdot 5 + \frac{130}{49}\cdot 1 + \frac{25}{49}\cdot 10 = \frac{845 + 130 + 250}{49} = 25\\
+		\overrightarrow{V}\cdot\overrightarrow{V} &= ||v||^{2} = 25, \quad\quad\quad \therefore v = 5						
+	\end{align*}
+
+	Let's consider,
+	\begin{align*}
+		(\overrightarrow{e_{i}}\cdot \overrightarrow{e_{j}}) & = g_{ij}\\
+		(\widetilde{\overrightarrow{e_{i}}}\cdot \widetilde{\overrightarrow{e_{j}}}) &= \widetilde{g}_{ij}
+	\end{align*}
+
+	which are called metric tensor 
+	
+	\begin{align*}
+		\overrightarrow{V}\cdot\overrightarrow{V} &= (v^{1}\overrightarrow{e_{1}} + v^{2}\overrightarrow{e_{2}} + v^{3}\overrightarrow{e_{3}})\cdot (v^{1}\overrightarrow{e_{1}} + v^{2}\overrightarrow{e_{2}} + v^{3}\overrightarrow{e_{3}})\\
+		&= v^{1}v^{1}(\overrightarrow{e_{1}}\cdot \overrightarrow{e_{1}}) + v^{1}v^{2}(\overrightarrow{e_{1}}\cdot \overrightarrow{e_{2}}) + v^{1}v^{3}(\overrightarrow{e_{1}}\cdot \overrightarrow{e_{3}}) +v^{2}v^{1}(\overrightarrow{e_{2}}\cdot \overrightarrow{e_{1}})\\
+		&+ v^{2}v^{2}(\overrightarrow{e_{2}}\cdot \overrightarrow{e_{2}}) + v^{2}v^{3}(\overrightarrow{e_{2}}\cdot \overrightarrow{e_{3}})+ v^{3}v^{1}(\overrightarrow{e_{3}}\cdot \overrightarrow{e_{1}}) + v^{3}v^{2}(\overrightarrow{e_{3}}\cdot \overrightarrow{e_{2}})\\ 
+		& + v^{3}v^{3}(\overrightarrow{e_{3}}\cdot \overrightarrow{e_{3}})\\
+		&= v^{1}v^{j}(\overrightarrow{e_{1}}\cdot \overrightarrow{e_{j}}) + 
+		v^{2}v^{j}(\overrightarrow{e_{2}}\cdot \overrightarrow{e_{j}}) + v^{3}v^{j}(\overrightarrow{e_{3}}\cdot \overrightarrow{e_{j}})\\
+		&= v^{i}v^{j}(\overrightarrow{e_{i}}\cdot \overrightarrow{e_{j}})\\
+		&=\widetilde{v}^{i}\widetilde{v}^{j}(\widetilde{\overrightarrow{e_{i}}}\cdot \widetilde{\overrightarrow{e_{j}}})
+	\end{align*}
+
+	\begin{align*}
+		\overrightarrow{V}\cdot\overrightarrow{W} &= (v^{1}\overrightarrow{e_{1}} + v^{2}\overrightarrow{e_{2}} + v^{3}\overrightarrow{e_{3}})\cdot (w^{1}\overrightarrow{e_{1}} + w^{2}\overrightarrow{e_{2}} + w^{3}\overrightarrow{e_{3}})\\
+		&= v^{1}w^{1}(\overrightarrow{e_{1}}\cdot \overrightarrow{e_{1}}) + v^{1}w^{2}(\overrightarrow{e_{1}}\cdot \overrightarrow{e_{2}}) + v^{1}w^{3}(\overrightarrow{e_{1}}\cdot \overrightarrow{e_{3}}) +v^{2}w^{1}(\overrightarrow{e_{2}}\cdot \overrightarrow{e_{1}})\\
+		&+ v^{2}w^{2}(\overrightarrow{e_{2}}\cdot \overrightarrow{e_{2}}) + v^{2}w^{3}(\overrightarrow{e_{2}}\cdot \overrightarrow{e_{3}})+ v^{3}w^{1}(\overrightarrow{e_{3}}\cdot \overrightarrow{e_{1}}) + v^{3}w^{2}(\overrightarrow{e_{3}}\cdot \overrightarrow{e_{2}})\\ 
+		& + v^{3}w^{3}(\overrightarrow{e_{3}}\cdot \overrightarrow{e_{3}})\\
+		&= v^{1}w^{j}(\overrightarrow{e_{1}}\cdot \overrightarrow{e_{j}}) + 
+		v^{2}w^{j}(\overrightarrow{e_{2}}\cdot \overrightarrow{e_{j}}) + v^{3}w^{j}(\overrightarrow{e_{3}}\cdot \overrightarrow{e_{j}})\\
+		&= v^{i}w^{j}(\overrightarrow{e_{i}}\cdot \overrightarrow{e_{j}})\\
+		&=\widetilde{v}^{i}\widetilde{w}^{j}(\widetilde{\overrightarrow{e_{i}}}\cdot \widetilde{\overrightarrow{e_{j}}}) 
+	\end{align*}
+	
+	\begin{mybox}{Transformation Method \emph{}}
+		\begin{center}
+			\begin{align*}
+				(\overrightarrow{e_{i}}\cdot \overrightarrow{e_{j}}) &= g_{ij} = B^{k}_{i}B^{l}_{j}(\widetilde{\overrightarrow{e_{i}}}\cdot \widetilde{\overrightarrow{e_{j}}}) = B^{k}_{i}B^{l}_{j}\widetilde{g}_{ij}\\
+				(\widetilde{\overrightarrow{e_{i}}}\cdot \widetilde{\overrightarrow{e_{j}}}) &= \widetilde{g}_{ij} = F^{k}_{i}F^{l}_{j}(\overrightarrow{e_{i}}\cdot \overrightarrow{e_{j}}) = F^{k}_{i}F^{l}_{j}g_{ij}
+			\end{align*}
+		\end{center}
+	\end{mybox}
+
+	\section*{Metric Tensor Properties}
+	
+	\begin{itemize}
+		\item Metric tensor is a function $g:V\times V \rightarrow \mathbb{R}\quad (V\times V$ denotes that it takes 2 vector as input not multiple nor cross product)
+		\begin{itemize}
+			\item[$\bullet$] as a direct function $g(\overrightarrow{V}, \overrightarrow{W}) \rightarrow v^{i}w^{j}g_{ij}$
+			\item[$\bullet$] by decomposing into a vector co-vector matrix
+			$$\begin{bmatrix}
+				v^{1} & v^{2} & v^{3}
+			\end{bmatrix}\begin{bmatrix}
+			(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{1}}\cdot\overrightarrow{e_{3}})\\
+			(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{2}}\cdot\overrightarrow{e_{3}})\\
+			(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{3}}\cdot\overrightarrow{e_{3}})
+		\end{bmatrix}\begin{bmatrix}
+		v^{1}\\
+		v^{2}\\
+		v^{3}
+	\end{bmatrix}$$
+		\end{itemize}
+		\item Scaling inputs
+		\begin{itemize}
+			\item[$\bullet$] scaling the whole is same as scaling ``either” vector or co-vector
+			
+			\begin{align*}
+				&a\begin{bmatrix}
+					v^{1} & v^{2} & v^{3}
+				\end{bmatrix}\begin{bmatrix}
+					(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{1}}\cdot\overrightarrow{e_{3}})\\
+					(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{2}}\cdot\overrightarrow{e_{3}})\\
+					(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{3}}\cdot\overrightarrow{e_{3}})
+				\end{bmatrix}\begin{bmatrix}
+					v^{1}\\
+					v^{2}\\
+					v^{3}
+				\end{bmatrix}\\
+			   =& \begin{bmatrix}
+			   	av^{1} & av^{2} & av^{3}
+			   \end{bmatrix}\begin{bmatrix}
+			   	(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{1}}\cdot\overrightarrow{e_{3}})\\
+			   	(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{2}}\cdot\overrightarrow{e_{3}})\\
+			   	(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{3}}\cdot\overrightarrow{e_{3}})
+			   \end{bmatrix}\begin{bmatrix}
+			   	v^{1}\\
+			   	v^{2}\\
+			   	v^{3}
+			   \end{bmatrix}\\
+		   =& \begin{bmatrix}
+		   	v^{1} & v^{2} & v^{3}
+		   \end{bmatrix}\begin{bmatrix}
+		   	(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{1}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{1}}\cdot\overrightarrow{e_{3}})\\
+		   	(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{2}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{2}}\cdot\overrightarrow{e_{3}})\\
+		   	(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{1}}) + {v}^{2}(\overrightarrow{e_{3}}\cdot\overrightarrow{e_{2}}) + (\overrightarrow{e_{3}}\cdot\overrightarrow{e_{3}})
+		   \end{bmatrix}\begin{bmatrix}
+		   	av^{1}\\
+		   	av^{2}\\
+		   	av^{3}
+		   \end{bmatrix}
+			\end{align*}
+		\item[$\bullet$] $a(v^{i}w^{j}g_{ij}) = (av^{i})w^{j}g_{ij} = v^{i}(aw^{j})g_{ij}$
+		\item[$\bullet$] $ag(\overrightarrow{V}, \overrightarrow{W}) = g(a\overrightarrow{V}, \overrightarrow{W}) = g(\overrightarrow{V}, a\overrightarrow{W})$
+		\end{itemize}
+	\item Adding inputs
+	
+	$(\begin{bmatrix}
+		u^{1} & u^{2} & u^{3}
+	\end{bmatrix} + \begin{bmatrix}
+		v^{1} & v^{2} & v^{3}
+	\end{bmatrix})\begin{bmatrix}
+		g_{11} & g_{12} & g_{13}\\
+		g_{21} & g_{22} & g_{23}\\
+		g_{31} & g_{32} & g_{33} 
+	\end{bmatrix}\begin{bmatrix}
+		w^{1}\\
+		w^{2}\\
+		w^{3}
+	\end{bmatrix}$
+		\begin{itemize}
+			\item[$\bullet$] $(v^{i} + u^{i})g_{ij}w_{j} = v^{i}w^{j}g_{ij} + u^{i}w^{j}g_{ij}$
+			\item[$\bullet$] $g(\overrightarrow{V} + \overrightarrow{U}, \overrightarrow{W}) = g(\overrightarrow{V}, \overrightarrow{W}) + g(\overrightarrow{U}, \overrightarrow{W})$
+		\end{itemize}
+	$(\begin{bmatrix}
+		u^{1} & u^{2} & u^{3}
+	\end{bmatrix})\begin{bmatrix}
+		g_{11} & g_{12} & g_{13}\\
+		g_{21} & g_{22} & g_{23}\\
+		g_{31} & g_{32} & g_{33} 
+	\end{bmatrix}\Bigg(\begin{bmatrix}
+		w^{1}\\
+		w^{2}\\
+		w^{3}
+	\end{bmatrix} + \begin{bmatrix}
+	t^{1}\\
+	t^{2}\\
+	t^{3}
+\end{bmatrix}\Bigg)$
+	\begin{itemize}
+		\item[$\bullet$] $v^{i}g_{ij}(w^{j} + t^{j}) = v^{i}w^{j}g_{ij} + v^{i}t^{j}g_{ij}$
+		\item[$\bullet$] $g(\overrightarrow{V}, \overrightarrow{W}+\overrightarrow{T}) = g(\overrightarrow{V}, \overrightarrow{W}) + g(\overrightarrow{V}, \overrightarrow{T})$
+	\end{itemize}
+	
+	\end{itemize}
+
+	
+	
 	\section*{Tensor Product Spaces}
 	\begin{tcolorbox}
 		\begin{align*}
@@ -560,11 +844,11 @@
 	
 	Such scaling and adding rules refers to vector space.
 	\large
-	\begin{align*}
+	\begin{align}
 		\overrightarrow{v},\overrightarrow{w},\overrightarrow{e_{1}},\overrightarrow{e_{2}}\quad\quad &\in V \quad\text{ these vectors exist in product space V}\\
 		\alpha,\beta,\epsilon^{1},\epsilon^{2}\quad\quad &\in V^{*}\quad \text{ these co-vectors exist in dual space}\\
 		\overrightarrow{v}\otimes\alpha,\overrightarrow{v}\otimes\beta,\overrightarrow{w}\otimes\alpha,\overrightarrow{w}\otimes\beta,\overrightarrow{e_{1}}\otimes\epsilon^{2},L^{i}_{j}\overrightarrow{e_{i}}\otimes\epsilon^{j}\quad\quad &\in V\otimes V^{*}
-	\end{align*}
+	\end{align}
 	\Large
 	So in the last statement, we can see that vector co-vector pair such  $\overrightarrow{v}\otimes\alpha,\overrightarrow{v}\otimes\beta,\overrightarrow{w}\otimes\alpha$ etc. can be scaled and added. So these belongs to a vector space and that is $V\otimes V^{*}$ since we are combining spaces. 
 
