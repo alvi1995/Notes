@@ -88,14 +88,14 @@ F(x_{n+1}) &= F(x_{n}) + F^{\prime}(x_{n})(x_{n+1}-x_{n}) + \frac{F^{\prime\prim
 
 {
 \Large
-\begin{equation*}
+\begin{equation}
 \begin{split}
 y_{n+1}-y_{n} &= F(x_{n+1})-F(x_{n}) \\
 			  &= (x_{n+1}-x_{n})F^{\prime}(x_{n}) + (x_{n+1}-x_{n})^{2} \frac{F^{\prime\prime}(x_{n})}{2!} + ....... \\
 			  &= h_{n}F^{\prime}(x_{n}) + (h_{n})^{2}\frac{F^{\prime\prime}(x_{n})}{2!} + .......... (h_{n} = x_{n+1} - x_{n})\\
 y_{n+1}-y_{n} &= h_{n}F^{\prime}(x_{n}) + (h_{n})^{2}\frac{F^{\prime\prime}(x_{n})}{2!} + (h_{n})^{3}\frac{F^{\prime\prime\prime}(x_{n})}{3!} + ........... \\
 \end{split}
-\end{equation*}
+\end{equation}
 }
 
 {
@@ -254,37 +254,15 @@ y_{n+1}-y_{n} &= \sum_{t = 1}^{\infty}(h_{n})^{t}\frac{y_{n}^{(t)}}{t!}\\
 \end{equation}
 }
 
-The expansion of equation $\ref{E1}$ can be done using taylor series expansion
-
 {
-\large
-
-\begin{equation*}
-\begin{split}
-f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) =& f(x_{n},y_{n}) + \bigg[\alpha_{i}h_{n}\frac{\partial}{\partial y} + \sum (\beta_{ij})h_{n}f_{n}\frac{\partial}{\partial y}\bigg]f(x_{n},y_{n})\\
-																& + \frac{1}{2!}\bigg[\alpha_{i}h_{n}\frac{\partial}{\partial y} + \sum (\beta_{ij}) h_{n}f_{n}\frac{\partial}{\partial y}\bigg]^{2}f(x_{n},y_{n})\\
-																& + \frac{1}{3!}\bigg[\alpha_{i}h_{n}\frac{\partial}{\partial y} + \sum (\beta_{ij}) h_{n}f_{n}\frac{\partial}{\partial y}\bigg]^{3}f(x_{n},y_{n})\\ 
-																& + ........................\\
-																& + \frac{1}{n!}\bigg[\alpha_{i}h_{n}\frac{\partial}{\partial y} + \sum (\beta_{ij}) h_{n}f_{n}\frac{\partial}{\partial y}\bigg]^{n}f(x_{n},y_{n})												
-\end{split}
-\end{equation*}
+	\large
+	\begin{align*}
+		k_{i} &= h_{n}f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) &   &   &   &    &     &	&	 & 	&\\
+		&= h_{n}f\bigg[x_{n}+\alpha_{i}h_{n}, y_{n}+(\sum_{j=1}^{i-1}\beta_{ij})h_{n}f_{n} + \bigg(\sum_{j=2}^{i-1}\beta_{ij}(k_{j}-h_{n}f_{n})\bigg)\bigg] &    &     &     &	  &		&   &    &	  &\\
+		&= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{i}+\sum_{j=2}^{i-1}\beta_{ij}(k_{j}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x_{n},y_{n}) &    &     &	 &		&	   &    &	  &     &\\
+	\end{align*}
 }
 
-{
-\large
-\begin{equation}
-\begin{split}
-f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) =& \sum_{t=0}^{\infty}\frac{\bigg(\alpha_{i}h_{n}\frac{\partial}{\partial x} + \sum (\beta_{ij})h_{n}f_{n}\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x_{n},y_{n})
-\end{split}
-\end{equation}
-}
-
-Let {\large $$D_{i} = \alpha_{i}\frac{\partial}{\partial x} + \sum (\beta_{ij})f_{n}\frac{\partial}{\partial y}$$}
-
-{
-\large
-$$f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) = \sum_{t=0}^{\infty}\frac{h_{n}^{t}D^{t}_{i}}{t!}f(x_{n},y_{n})$$
-}
 {
 \large
 Since $\alpha_{1} = 0$ 
@@ -294,7 +272,7 @@ k_{1} =& h_{n}f(x_{n},y_{n})\\
 k_{2} =& h_{n}f(x_{n}+\alpha_{2}h_{n},y_{n}+\beta_{21}k_{1})=h_{n}f(x_{n}+\alpha_{2}h_{n},y_{n}+\beta_{21}h_{n}f_{n})\\
       =& h_{n} \sum_{t=0}^{\infty}\frac{h_{n}^{t}D_{2}^{t}}{t!}f(x_{n},y_{n})\\
 k_{3} = & h_{n}f(x_{n}+\alpha_{3}h_{n},y_{n}+\beta_{31}k_{1}+\beta_{32}k_{2})\\
-	  =	& h_{n}f\bigg[x_{n}+\alpha_{2}h_{n},y_{n}+h_{n}f_{n}(\beta_{31}+\beta_{32})+\beta_{32}(k_{2}-h_{n}f_{n})\bigg]\\
+	  =	& h_{n}f\bigg[x_{n}+\alpha_{3}h_{n},y_{n}+h_{n}f_{n}(\beta_{31}+\beta_{32})+\beta_{32}(k_{2}-h_{n}f_{n})\bigg]\\
 	  = & \sum_{t=0}^{\infty}\frac{\bigg(\alpha_{i}h_{n}\frac{\partial}{\partial x} + (\beta_{31}+\beta_{32})h_{n}f_{n}\frac{\partial}{\partial y} + \beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)}{t!}^{t}f(x_{n},y_{n})\\
 	  =& h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x_{n},y_{n})\\
 k_{4} =& h_{n}f(x_{n}+\alpha_{4}h_{n},y_{n}+\beta_{41}k_{1}+\beta_{42}k_{2}+\beta_{43}k_{3})\\
@@ -305,14 +283,14 @@ k_{4} =& h_{n}f(x_{n}+\alpha_{4}h_{n},y_{n}+\beta_{41}k_{1}+\beta_{42}k_{2}+\bet
 \end{split}
 \end{equation}
 }
+
+Let {\large $$D_{i} = \alpha_{i}\frac{\partial}{\partial x} + \sum (\beta_{ij})f_{n}\frac{\partial}{\partial y}$$}
+
 {
-\large
-\begin{align*}
-k_{i} &= h_{n}f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) &   &   &   &    &     &	&	 & 	&\\
-	  &= h_{n}f\bigg[x_{n}+\alpha_{4}h_{n}, y_{n}+(\sum_{j=1}^{i-1}\beta_{ij})h_{n}f_{n} + \bigg(\sum_{j=2}^{i-1}\beta_{ij}(k_{j}-h_{n}f_{n})\bigg)\bigg] &    &     &     &	  &		&   &    &	  &\\
-	  &= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{i}+\sum_{j=2}^{i-1}\beta_{ij}(k_{j}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x_{n},y_{n}) &    &     &	 &		&	   &    &	  &     &\\
-\end{align*}
+	\large
+	$$f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) = \sum_{t=0}^{\infty}\frac{h_{n}^{t}D^{t}_{i}}{t!}f(x_{n},y_{n})$$
 }
+
 {
 \large
 \begin{align*}
