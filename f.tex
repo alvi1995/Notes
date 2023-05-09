@@ -415,57 +415,73 @@ k_{3} &= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_
 	&= h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\beta_{42}(k_{2}-h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\beta_{43}(k_{3}-h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
 	&= h_{n}^{2}D_{4}f_{n} + h_{n}\beta_{42}\bigg(h_{n}^{2}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n} + \frac{h_{n}^{4}}{3!}D_{2}^{3}f_{n}\bigg)f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\beta_{43}\bigg[h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n} + \beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg) \\
 	&+ h_{n}^{4}\bigg(\frac{1}{6}D_{3}^{3}f_{n} + \frac{1}{2}\beta_{32}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}\bigg)\bigg]f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	&= h_{n}^{2}D_{4}f(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + h_{n}^{3}\bigg(\beta_{42}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg) \\
-	&+ h_{n}^{4}\bigg(\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}f_{y_{|_{n}}}(D_{3}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)\\
-	&+ h_{n}^{5}\bigg(\frac{1}{6}\beta_{42}(D_{2}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} +\frac{1}{6}\beta_{43}(D_{3}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{32}\beta_{43}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)
+	&= \color{red}h_{n}^{2}D_{4}f(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \color{orange}h_{n}^{3}\bigg(\beta_{42}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg) \\
+	&\color{green}+ h_{n}^{4}\bigg(\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)\\
+	&+\color{blue}h_{n}^{5}\bigg(\frac{1}{6}\beta_{42}(D_{2}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} +\frac{1}{6}\beta_{43}(D_{3}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
+	&\color{blue}+ \beta_{32}\beta_{43}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)
 \end{align*}
 
+
+\newpage
 \begin{align*}
 	& h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \\
 	&= \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[h_{n}^{2}D_{4} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
 	&= h_{n}D_{4}\bigg[h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
 	&+ \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
-	&= h_{n}D_{4}\bigg[h_{n}^{2}D_{4}f(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + h_{n}^{3}\bigg(\beta_{42}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg) \\
-	&+ h_{n}^{4}\bigg(\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}f_{y_{|_{n}}}(D_{3}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)\bigg]\\
-	&+ h_{n}^{2}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})D_{4}f_{y}(x,y) + h_{n}\bigg(\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\bigg)^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	&= h_{n}^{3}D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{4}\bigg(\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg) \\
-	&+ h_{n}^{5}\bigg(\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}f_{y_{|_{n}}}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)\\
-	&+ h_{n}^{2}\beta_{42}(k_{2}-h_{n}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + h_{n}^{2}\beta_{43}(k_{3}-h_{n}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + h_{n}\bigg(\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\bigg)^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	&= h_{n}^{3}D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{4}\bigg(\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg) \\
-	&+ h_{n}^{5}\bigg(\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}f_{y_{|_{n}}}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)\\
-	&+ h_{n}^{2}\beta_{42}\bigg(h_{n}^{2}D_{2}f_{n} + \frac{h^{3}}{2!}D_{2}^{2}f_{n}\bigg)D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + h_{n}^{2}\beta_{43}\bigg[h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n} + \beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg)\bigg]D_{4}f_{y}(x,y)\bigg\vert_{x= x_{n}, y = y_{n}}\\
-	&+ h_{n}\bigg(\beta_{42}(k_{2}-h_{n}f_{n}) + \beta_{43}(k_{3}-h_{n}f_{n})\bigg)^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
-	&= h_{n}^{3}D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{4}\bigg(\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
-	&+ \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg) + h_{n}^{5}\bigg(\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}f_{y_{|_{n}}}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
-	&+ \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
-	&+ \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg) + h_{n} \bigg[\beta_{42}(h_{n}^{2}D_{2}f_{n}) + \beta_{43}(h_{n}^{2}D_{3}f_{n})\bigg]^{2}f_{yy}(x,y)\bigg\vert_{x = x_{n}, y= y_{n}}\\
-	&=  h_{n}^{3}D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{4}\bigg(\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
-	&+ \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg) + h_{n}^{5}\bigg(\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}f_{y_{|_{n}}}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
-	&+ \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
-	&+ \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{42}^{2}(D_{2}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{43}^{2}(D_{3}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
-	&+ 2\beta_{42}\beta_{43}(D_{3}f_{n})(D_{2}f_{n})f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)
+	&= h_{n}D_{4}\bigg[h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg] + h_{n}D_{4}\bigg[h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+	&+ \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg] + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+	&= h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+	&+h_{n}\bigg(\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})\bigg)^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&= h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\beta_{42}(k_{2}-h_{n}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\beta_{43}(k_{3}-h_{n}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&+ h_{n}^{2}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg] + h_{n}\bigg[\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})\bigg]^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&= h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} +  h_{n}^{2}\beta_{42}\bigg(h_{n}^{2}D_{2}f_{n}+\frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} \\
+	&+ h_{n}^{2}\beta_{43}\bigg[h_{n}^{2}D_{3}f_{n}+ h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n}+\beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg)\bigg]D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\bigg[\beta_{42}(k_{2}- h_{n}f_{n}) + \beta_{43}(k_{3}-h_{n}f_{n})\bigg]D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&+ h_{n}\bigg[\beta_{42}(k_{2}-h_{n}f_{n}) + \beta_{43}(k_{3}-h_{n}f_{n})\bigg]^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&= h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} +  h_{n}^{2}\beta_{42}\bigg(h_{n}^{2}D_{2}f_{n}+\frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{4}\beta_{43}D_{3}f_{n}D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+	&+ h_{n}^{5}\beta_{43}\bigg(\frac{1}{2}D_{3}^{2}f_{n}+\beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg)D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\beta_{42}\bigg[h_{n}^{2}D_{2}f_{n} + \frac{h_{n}^{3}}{2}D_{2}^{2}f_{n}\bigg]D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+	&+ h_{n}^{2}\beta_{43}\bigg[h_{n}^{2}D_{3}f_{n}+h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n}+\beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg)\bigg]D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + h_{n}\bigg[\beta_{42}h_{n}^{2}D_{2}f_{n} + \beta_{43}h_{n}^{2}D_{3}f_{n}\bigg]^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+	&= \color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \color{green}h_{n}^{4}\bigg[2\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \bigg]\\
+	&\color{blue}+ h_{n}^{5}\bigg[\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&\color{blue}+\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&\color{blue}+\beta_{42}^{2}(D_{2}f_{n})^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}^{2}(D_{3}f_{n})^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{42}\beta_{43}(D_{2}f_{n})(D_{3}f_{n})f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+	&=  \color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{green}+ h_{n}^{4}\bigg(2\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg) \\
+	&\color{blue}+h_{n}^{5}\bigg(\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + 2\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+	&\color{blue}+ \beta_{42}^{2}(D_{2}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{43}^{2}(D_{3}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + 2\beta_{42}\beta_{43}(D_{3}f_{n})(D_{2}f_{n})f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)
 \end{align*}
 
+
+\newpage
 \begin{align*}
 	&h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
 	&= \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[h_{n}^{2}D_{4} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	&= \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[h_{n}^{3}D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{4}\bigg(\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} \\
-	&+ \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x=x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x=x_{n}, y= y_{n}}\bigg)\bigg]\\
-	&= h_{n}D_{4}\bigg[h_{n}^{3}D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{4}\bigg(\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} +\beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} \\
-	&+ \beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x=x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x=x_{n}, y= y_{n}}\bigg)\bigg]\\
-	&+ \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[h_{n}^{3}D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
-	&= h_{n}^{4}D_{4}^{3}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{5}\bigg[\beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}+\beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	&+ \beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x=x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg] + h_{n}^{3}\beta_{42}(k_{2}-h_{n}f_{n})D_{4}^{2}f_{yy}(x,y)\big\vert_{x=x_{n}, y= y_{n}}\\
-	&+ h_{n}^{3}\beta_{43}(k_{3}-h_{n}f_{n})D_{4}^{2}f_{yy}(x,y)\big\vert_{x=x_{n}, y= y_{n}}\\
+	&= \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[\color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{green} + h_{n}^{4}\bigg(2\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg)\color{black}\bigg]\\
+	&= h_{n}D_{4}\bigg[\color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{green} + h_{n}^{4}\bigg(2\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg)\color{black}\bigg] + \\
+	&+ \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[\color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\color{black}\bigg]\\
+	&= \color{green}h_{n}^{4}D_{4}^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{blue}+ h_{n}^{5}\bigg(2\beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&\color{blue}+\beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg)\\
+	&= \color{green}h_{n}^{4}D_{4}^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{blue}+h_{n}^{5}\bigg(3\beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 3\beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg)
 \end{align*}
 
+\begin{align*}
+	&h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&=  \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[h_{n}^{2}D_{4} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+	&= h_{n}D_{4}\bigg[\color{green}h_{n}^{4}D_{4}^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{blue}\bigg] + O(h_{n}^{6})\\
+	&= \color{blue}h_{n}^{5}D_{4}^{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{black}+ O(h_{n}^{6})
+\end{align*}
 
 \normalsize
 \begin{equation}
 	\begin{split}
 		k_{4} &= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{4}+\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-		&= h_{n}f_{n} + h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}}{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-		&+  h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}}{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} +  h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{4}}{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + ...
+		&= h_{n}f_{n} + h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}}{2!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&+  h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}}{3!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} +  h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{4}}{4!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + ...\\
+		&= \color{brown}h_{n}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \color{red}h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \color{orange}h_{n}^{3}\bigg[\frac{1}{2}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{42}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
+		&\color{orange}+ \beta_{43}(D_{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg] + \color{green}h_{n}^{4}\bigg[\frac{1}{6}D_{4}^{3}f(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&\color{green}+ \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+		&\color{blue}+h_{n}^{5}\bigg[\frac{1}{24}D_{4}^{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{6}\beta_{42}(D_{2}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} +\frac{1}{6}\beta_{43}(D_{3}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+		&\color{blue}+ \beta_{32}\beta_{43}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
+		&\color{blue}+ \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}^{2}(D_{2}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}^{2}(D_{3}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
+		&\color{blue}+ \beta_{42}\beta_{43}(D_{3}f_{n})(D_{2}f_{n})f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]
 	\end{split}
 \end{equation}
 
