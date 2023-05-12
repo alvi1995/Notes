@@ -22,482 +22,569 @@
 \newcommand*\dif{\mathop{}\!\textnormal{\slshape d}}
 \newsavebox\MBox
 \newcommand\Cline[2][red]{{\sbox\MBox{$#2$}%
-  \rlap{\usebox\MBox}\color{#1}\rule[-1.2\dp\MBox]{\wd\MBox}{0.5pt}}}
-  
+		\rlap{\usebox\MBox}\color{#1}\rule[-1.2\dp\MBox]{\wd\MBox}{0.5pt}}}
+
 \begin{document}
-\maketitle
-
-\large
-\section*{Introduction:}
-
-What is Numerical Differentiation? The Differential Equations we solved in our courses are solvable by analytical method $y=F(x)$, but in case practical application most of then can not be solved analytically. Thus we try to solve them numerically. There are two approaches to do such task -
-\begin{enumerate}
-\item Predictor-corrector method
-\item Runge-Kutta Method
-\end{enumerate}
-
-In this we will discuss about Runge-kutta Method
-
-\section*{Runge-Kutta Method:}
-
-This method is about doing linear approximation of slopes calculated within $x_{n+1} - x_{n} = h_{n}$ such that the $y_{n+1}$ values closely corresponds to the Taylor series approximation at that point thus overcoming the error caused by generic euler method. 
-
-The solution of 
-
-{
-\Large
-\begin{equation}\label{E3}
-\begin{split}
-\frac{\mathop{\mathrm{d}y}}{\mathop{\mathrm{d}x}} &= f(x,y)
-\end{split}
-\end{equation}
-}
-
-is to be defined by
-
-{
-\Large
-\begin{equation}\label{E1}
-\begin{split}
-y_{n+1} & = y_{n} + \sum_{i=1}^{m}(w_{i}k_{i}) \\
-\end{split}
-\end{equation}
-}
-
-where $w_{i}$ are weighted values of slopes and 
-{
-\Large
-\begin{equation}\label{E2}
-\begin{split}
-k_{i} &= h_{n}f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j})
-\end{split}
-\end{equation}
-}
-are slope values.
-
-We will have to find the values of $\alpha_{i}$, $\beta_{ij}$, $h_{n}$ and $w_{i}$ to compute the solution. Initially $\alpha_{1} = 0, h_{n}=x_{n+1}-x_{n}$
-
-Expanding $F(x_{n+1})$,
-
-{
-\Large
-\begin{align*}
-F(x_{n+1}) &= F(x_{n}) + F^{\prime}(x_{n})(x_{n+1}-x_{n}) + \frac{F^{\prime\prime}(x_{n})(x_{n+1}-x_{n})^{2}}{2!}...........\\
-\end{align*}
-}
-
-{
-\Large
-\begin{equation}
-\begin{split}
-y_{n+1}-y_{n} &= F(x_{n+1})-F(x_{n}) \\
-			  &= (x_{n+1}-x_{n})F^{\prime}(x_{n}) + (x_{n+1}-x_{n})^{2} \frac{F^{\prime\prime}(x_{n})}{2!} + ....... \\
-			  &= h_{n}F^{\prime}(x_{n}) + (h_{n})^{2}\frac{F^{\prime\prime}(x_{n})}{2!} + .......... (h_{n} = x_{n+1} - x_{n})\\
-y_{n+1}-y_{n} &= h_{n}F^{\prime}(x_{n}) + (h_{n})^{2}\frac{F^{\prime\prime}(x_{n})}{2!} + (h_{n})^{3}\frac{F^{\prime\prime\prime}(x_{n})}{3!} + ........... \\
-\end{split}
-\end{equation}
-}
-
-{
-\Large
-\begin{equation}\label{E5}
-\begin{split}
-y_{n+1}-y_{n} &= \sum_{t = 1}^{\infty}(h_{n})^{t}\frac{y_{n}^{(t)}}{t!}\\
-\end{split}
-\end{equation}
-}
-
-it can be shown that, 
-{
-	\Large
+	\maketitle
+	
+	\large
+	\section*{Introduction:}
+	
+	What is Numerical Differentiation? The Differential Equations we solved in our courses are solvable by analytical method $y=F(x)$, but in case practical application most of then can not be solved analytically. Thus we try to solve them numerically. There are two approaches to do such task -
+	\begin{enumerate}
+		\item Predictor-corrector method
+		\item Runge-Kutta Method
+	\end{enumerate}
+	
+	In this we will discuss about Runge-kutta Method
+	
+	\section*{Runge-Kutta Method:}
+	
+	This method is about doing linear approximation of slopes calculated within $x_{n+1} - x_{n} = h_{n}$ such that the $y_{n+1}$ values closely corresponds to the Taylor series approximation at that point thus overcoming the error caused by generic euler method. 
+	
+	The solution of 
+	
+	{
+		\Large
+		\begin{equation}\label{E3}
+			\begin{split}
+				\frac{\mathop{\mathrm{d}y}}{\mathop{\mathrm{d}x}} &= f(x,y)
+			\end{split}
+		\end{equation}
+	}
+	
+	is to be defined by
+	
+	{
+		\Large
+		\begin{equation}\label{E1}
+			\begin{split}
+				y_{n+1} & = y_{n} + \sum_{i=1}^{m}(w_{i}k_{i}) \\
+			\end{split}
+		\end{equation}
+	}
+	
+	where $w_{i}$ are weighted values of slopes and 
+	{
+		\Large
+		\begin{equation}\label{E2}
+			\begin{split}
+				k_{i} &= h_{n}f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j})
+			\end{split}
+		\end{equation}
+	}
+	are slope values.
+	
+	We will have to find the values of $\alpha_{i}$, $\beta_{ij}$, $h_{n}$ and $w_{i}$ to compute the solution. Initially $\alpha_{1} = 0, h_{n}=x_{n+1}-x_{n}$
+	
+	Expanding $F(x_{n+1})$,
+	
+	{
+		\Large
+		\begin{align*}
+			F(x_{n+1}) &= F(x_{n}) + F^{\prime}(x_{n})(x_{n+1}-x_{n}) + \frac{F^{\prime\prime}(x_{n})(x_{n+1}-x_{n})^{2}}{2!}...........\\
+		\end{align*}
+	}
+	
+	{
+		\Large
+		\begin{equation}
+			\begin{split}
+				y_{n+1}-y_{n} &= F(x_{n+1})-F(x_{n}) \\
+				&= (x_{n+1}-x_{n})F^{\prime}(x_{n}) + (x_{n+1}-x_{n})^{2} \frac{F^{\prime\prime}(x_{n})}{2!} + ....... \\
+				&= h_{n}F^{\prime}(x_{n}) + (h_{n})^{2}\frac{F^{\prime\prime}(x_{n})}{2!} + .......... (h_{n} = x_{n+1} - x_{n})\\
+				y_{n+1}-y_{n} &= h_{n}F^{\prime}(x_{n}) + (h_{n})^{2}\frac{F^{\prime\prime}(x_{n})}{2!} + (h_{n})^{3}\frac{F^{\prime\prime\prime}(x_{n})}{3!} + ........... \\
+			\end{split}
+		\end{equation}
+	}
+	
+	{
+		\Large
+		\begin{equation}\label{E5}
+			\begin{split}
+				y_{n+1}-y_{n} &= \sum_{t = 1}^{\infty}(h_{n})^{t}\frac{y_{n}^{(t)}}{t!}\\
+			\end{split}
+		\end{equation}
+	}
+	
+	it can be shown that, 
+	{
+		\Large
+		\begin{equation*}
+			\begin{split}
+				\frac{\mathop{\mathrm{df}}}{\mathop{\mathrm{dx}}} = \frac{\partial f}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y} =&  (\frac{\partial }{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial }{\partial y})f \text{...... where }\\
+				& (\frac{\partial }{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial }{\partial y}) \text{ is a type of differential operator}\\
+			\end{split}
+		\end{equation*}
+	}
+	
+	Again, 
+	
 	\begin{equation*}
 		\begin{split}
-			\frac{\mathop{\mathrm{df}}}{\mathop{\mathrm{dx}}} = \frac{\partial f}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y} =&  (\frac{\partial }{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial }{\partial y})f \text{...... where }\\
-			& (\frac{\partial }{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial }{\partial y}) \text{ is a type of differential operator}\\
+			\frac{\mathop{\mathrm{d^{2}f}}}{\mathop{\mathrm{dx^{2}}}} &= \frac{\mathop{\mathrm{d}}}{\mathop{\mathrm{dx}}}\bigg(\frac{\partial f}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)\\ 
+			&=  \bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)_{x} +   f\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)_{y}\\
+			&= \frac{\partial }{\partial x}\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)+f\frac{\partial }{\partial y}\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)=\bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)\bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)f\\
+			&= \frac{\partial }{\partial x}\bigg(\frac{\partial f}{\partial x}+f\frac{\partial f}{\partial y}\bigg)+f\frac{\partial }{\partial y}\bigg(\frac{\partial f}{\partial x}+f\frac{\partial f}{\partial y}\bigg)\\
+			&= \frac{\partial^{2}f}{\partial x^{2}} + f\frac{\partial^{2}f}{\partial x \partial y}+\frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial^{2}f}{\partial x \partial y} + f\frac{\partial }{\partial y}\bigg(f\frac{\partial f}{\partial y}\bigg)\\
+			&= \frac{\partial^{2}f}{\partial x^{2}} + f\frac{\partial^{2}f}{\partial x \partial y}+\frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial^{2}f}{\partial x \partial y} + f\bigg(f\frac{\partial^{2}f}{\partial y^{2}}+\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\bigg)\\
+			&= \frac{\partial^{2}f}{\partial x^{2}} + f\frac{\partial^{2}f}{\partial x \partial y}+\frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2}f}{\partial y^{2}}+f\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\\
+			&=  (\frac{\partial }{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial }{\partial y})^{2}f\\
 		\end{split}
 	\end{equation*}
-}
-
-Again, 
-
-\begin{equation*}
-	\begin{split}
-		\frac{\mathop{\mathrm{d^{2}f}}}{\mathop{\mathrm{dx^{2}}}} &= \frac{\mathop{\mathrm{d}}}{\mathop{\mathrm{dx}}}\bigg(\frac{\partial f}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)\\ 
-		&=  \bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)_{x} +   f\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)_{y}\\
-		&= \frac{\partial }{\partial x}\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)+f\frac{\partial }{\partial y}\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)=\bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)\bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)f\\
-		&= \frac{\partial }{\partial x}\bigg(\frac{\partial f}{\partial x}+f\frac{\partial f}{\partial y}\bigg)+f\frac{\partial }{\partial y}\bigg(\frac{\partial f}{\partial x}+f\frac{\partial f}{\partial y}\bigg)\\
-		&= \frac{\partial^{2}f}{\partial x^{2}} + f\frac{\partial^{2}f}{\partial x \partial y}+\frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial^{2}f}{\partial x \partial y} + f\frac{\partial }{\partial y}\bigg(f\frac{\partial f}{\partial y}\bigg)\\
-		&= \frac{\partial^{2}f}{\partial x^{2}} + f\frac{\partial^{2}f}{\partial x \partial y}+\frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial^{2}f}{\partial x \partial y} + f\bigg(f\frac{\partial^{2}f}{\partial y^{2}}+\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\bigg)\\
-		&= \frac{\partial^{2}f}{\partial x^{2}} + f\frac{\partial^{2}f}{\partial x \partial y}+\frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2}f}{\partial y^{2}}+f\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\\
-		&=  (\frac{\partial }{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial }{\partial y})^{2}f\\
-	\end{split}
-\end{equation*}
-
-and,
-
-\begin{equation*}
-	\begin{split}
-		\frac{\mathop{\mathrm{d^{3}f}}}{\mathop{\mathrm{dx^{3}}}} &= \frac{\mathop{\mathrm{d}}}{\mathop{\mathrm{dx}}}\bigg(\frac{\partial f}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}\\ 
-		&=  \bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}_{x} +   f\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}_{y}\\
-		&= \frac{\partial }{\partial x}\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}+f\frac{\partial }{\partial y}\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}=\bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)\bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)^{2}f\\
-		&= \bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)^{3}f\\
-	\end{split}
-\end{equation*}
-
-
-In addition, $y_{n}^{\prime} = f(x_{n},y_{n}),$ Assuming differentiability, it follows that 
-
-{
-\Large
-\begin{equation}\label{E4}
-\begin{split}
-y_{n}^{t} &= \frac{\mathop{\mathrm{d}^{t-1}}}{\mathop{\mathrm{dx}}^{t-1}} \left\{y^{\prime}(x_{n},y_{n})\right\}\\ 
-		  &= \frac{\mathop{\mathrm{d}^{t-1}}}{\mathop{\mathrm{dx}}^{t-1}} f(x,y)_{|_{x_{n},y_{n}}}\\
-		  &= \bigg(\frac{\partial}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial}{\partial y}\bigg)^{t-1}f(x_{n},y_{n})\\
-\end{split}
-\end{equation}
-}
-
-Defining 
-
-\begin{equation*}
-\begin{split}
-D &= \bigg(\frac{\partial }{\partial x} + {\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}}\frac{\partial }{\partial y}\bigg)\Big\vert_{x = x_{n}, y= y_{n}} = \bigg(\frac{\partial }{\partial x} + f_{n}\frac{\partial }{\partial y}\bigg)....f_{n} = f(x,y)\vert_{x_{n}, y_{n}}  \text{ is a constant}\\
-\end{split}
-\end{equation*}
-
-
-{
-\large
-\begin{equation}
-\begin{split}
-D^{2} &= \bigg(\frac{\partial }{\partial x} + f_{n}\frac{\partial }{\partial y}\bigg)\cdot \bigg(\frac{\partial }{\partial x} + f_{n}\frac{\partial }{\partial y}\bigg)\\
-	  &= \Big(\frac{\partial^{2}}{\partial x^{2}} + 2f_{n}\frac{\partial^{2}}{\partial x \partial y} + f_{n}^{2}\frac{\partial^{2}}{\partial y^{2}}\Big)\Big\vert_{n}
-\end{split}
-\end{equation}
-}
-
-{
-\large
-\begin{equation*}
-\begin{split}
-\frac{\mathop{\mathrm{d^{2}f}}}{\mathop{\mathrm{dx^{2}}}}\Big\vert_{n} &= \Big(\frac{\partial^{2}f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2}f}{\partial y^{2}} + \frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\Big)\Big\vert_{n}\\
-																	   &= \Big(\frac{\partial^{2}f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2}f}{\partial y^{2}}\Big)\Big\vert_{n} + \frac{\partial f}{\partial y}\bigg(\frac{\partial f}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f }{\partial y}\bigg)\Big\vert_{n}\\
-																	   &=D^{2}f\Big\vert_{n}+f_{y}Df\Big\vert_{n}\\																   
-\end{split}
-\end{equation*}
-
-}
-
-{
-\Large
-\begin{equation*}
-\begin{split}
-\frac{\mathop{\mathrm{d^{3}f}}}{\mathop{\mathrm{dx^{3}}}} =& \frac{\mathop{\mathrm{d}}}{\mathop{\mathrm{dx}}}\bigg(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\bigg)^{2}=\bigg(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\bigg)^{3}\\
-														  =& \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(\frac{\partial^{2}f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2}f}{\partial y^{2}} + \frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\Big)\\
-														  =& \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(\frac{\partial^{2}f}{\partial x^{2}}\Big) + \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(2f\frac{\partial^{2}f}{\partial x \partial y}\Big) + \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(f^{2}\frac{\partial^{2}f}{\partial y^{2}}\Big)\\
-														  +& \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(\frac{\partial f}{\partial x}\frac{\partial f}{\partial y}\Big) + \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(f\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\Big)\\
-														  =& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + f\frac{\partial^{3}f}{\partial x^{2}\partial y}} + 2\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + \Cline[blue]{2f\frac{\partial^{3}f}{\partial x^{2}\partial y}} + \Cline[red]{2f\frac{\partial^{2}f}{\partial x \partial y}\frac{\partial f}{\partial y}} + \Cline[blue]{2f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{2}\frac{\partial^{3}f}{\partial x\partial y^{2}}} \\
-														  +& 2f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + \Cline[red]{f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}}} + f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + \Cline[blue]{f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial^{2} f}{\partial x^{2}}\frac{\partial f}{\partial y}} + \frac{\partial f}{\partial x}\frac{\partial^{2} f}{\partial x\partial y} +  f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f\frac{\partial^{2}f}{\partial x\partial y}\frac{\partial f}{\partial y}\\
-														  +& \Cline[green]{\frac{\partial f}{\partial x}\Big(\frac{\partial f}{\partial y}\Big)^{2}} + 2f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y} + \Cline[green]{f\Big(\frac{\partial f}{\partial y}\Big)^{3}} + 2f^{2}\frac{\partial^{2} f}{\partial y^{2}}\frac{\partial f}{\partial y}\\
-														  =& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + 2\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + \Cline[red]{2f\frac{\partial^{2}f}{\partial x \partial y}\frac{\partial f}{\partial y}} + 2f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}}\\
-														  +& \Cline[red]{f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}}} + f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + \Cline[red]{\frac{\partial^{2} f}{\partial x^{2}}\frac{\partial f}{\partial y}} + \frac{\partial f}{\partial x}\frac{\partial^{2} f}{\partial x\partial y} + f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f\frac{\partial^{2}f}{\partial x\partial y}\frac{\partial f}{\partial y} + \Cline[green]{\frac{\partial f}{\partial x}\Big(\frac{\partial f}{\partial y}\Big)^{2}} \\
-														  +& 2f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y} + \Cline[green]{f\Big(\frac{\partial f}{\partial y}\Big)^{3}} + 2f^{2}\frac{\partial^{2} f}{\partial y^{2}}\frac{\partial f}{\partial y}\\
-														  =& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
-														  +& 2\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + 2f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + \frac{\partial f}{\partial x}\frac{\partial^{2} f}{\partial x\partial y} + f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f\frac{\partial^{2}f}{\partial x\partial y}\frac{\partial f}{\partial y}\\
-														  +& 2f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y} + 2f^{2}\frac{\partial^{2} f}{\partial y^{2}}\frac{\partial f}{\partial y}\\
-														  =& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
-														  +& 3\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + 3f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + 3f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + 3f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y}\\
-														  =& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
-														  +& 3\Big(\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y}\Big)\\
-\end{split}
-\end{equation*}
-}
-
-{
-\Large
-\begin{equation*}
-\begin{split}
-\frac{\mathop{\mathrm{d^{3}f}}}{\mathop{\mathrm{dx^{3}}}} =& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
-														  +& 3\Big(\frac{\partial^{2}f}{\partial x\partial y}\Big\{\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big\} + f\frac{\partial^{2}f}{\partial y^{2}}\Big\{\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big\}\Big)\\
-														  =& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
-														  +& 3\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)\Big(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\Big)\frac{\partial f}{\partial y}
-\end{split}
-\end{equation*}
-}
-
-{
-\large
-\begin{equation*}
-\begin{split}
-D^{3} =& \bigg(\frac{\partial }{\partial x} + f_{n}\frac{\partial }{\partial y}\bigg)\bigg(\frac{\partial^{2}f}{\partial x^{2}} + 2f_{n}\frac{\partial^{2}f}{\partial x \partial y} + f_{n}^{2}\frac{\partial^{2}f}{\partial x^{2}}\bigg)\\
-	  =& \frac{\partial }{\partial x}\bigg(\frac{\partial^{2}f}{\partial x^{2}} + 2f_{n}\frac{\partial^{2}f}{\partial x \partial y} + f_{n}^{2}\frac{\partial^{2}f}{\partial y^{2}}\bigg) + f_{n}\frac{\partial }{\partial y}\bigg(\frac{\partial^{2}f}{\partial x^{2}} + 2f_{n}\frac{\partial^{2}f}{\partial x \partial y} + f_{n}^{2}\frac{\partial^{2}f}{\partial y^{2}}\bigg)\\
-	  =& \frac{\partial^{3}f}{\partial x^{3}} + 2f_{n}\frac{\partial^{3}f}{\partial x^{2}\partial y} + f_{n}^{2}\frac{\partial^{3}f}{\partial x\partial y^{2}} + f_{n}\frac{\partial^{3}f}{\partial x^{2}\partial y} + 2f_{n}^{2}\frac{\partial^{3}f}{\partial x\partial y^{2}} + f_{n}^{3}\frac{\partial^{3}f}{\partial y^{3}}\\ 
-	  =& \frac{\partial^{3}f}{\partial x^{3}} + 3f_{n}\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f_{n}^{2}\frac{\partial^{3}f}{\partial x\partial y^{2}} + f_{n}^{3}\frac{\partial^{3}f}{\partial y^{3}}\\
-\end{split}
-\end{equation*}
-}
-
-{
-\Large
-\begin{equation*}
-\frac{\mathop{\mathrm{d^{3}f}}}{\mathop{\mathrm{dx^{3}}}}\Big\vert_{n} = D^{3}f + f_{y}D^{2}f + f_{y}^{2}Df + 3DfDf_{y}\Big\vert_{n}
-\end{equation*}
-}
-
-putting equation $\ref{E5}$ into $\ref{E4}$ 
-
-\begin{equation}\label{E6}
-\begin{split}
-y_{n+1}-y_{n} &= \sum_{t = 1}^{\infty}(h_{n})^{t}\frac{y_{n}^{(t)}}{t!}\\
-			  &= \sum_{t = 1}^{\infty}h_{n}^{t+1}\cdot \frac{(\frac{\partial }{\partial x} +f\frac{\partial }{\partial y})^{t}}{(t+1)!}\cdot f(x_{n},y_{n})\\
-			  &=\bigg[hf + \frac{h^{2}}{2!}Df + \frac{h^{3}}{3!}\bigg(D^{2}f+f_{y}Df\bigg)  \\
-			  & + \frac{h^{4}}{4!}\bigg(D^{3}f + f_{y}D^{2}f + f_{y}^{2}Df + 3DfDf_{y}\bigg) \\
-			  & + \frac{h^{5}}{5!}\bigg(D^{4}f+6DfD^{2}f_{y} + f_{y}^{2}D^{2}f + f_{y}^{3}Df \\
-			  & + 3f_{yy}(Df)^{2} + f_{y}D^{3}f + 7f_{y}DfDf_{y}\bigg)\bigg] + O(h^{6})\\
-\end{split}
-\end{equation}
-{
-	\color{red}
-	\large
-My derivation upto this point is consistent and I can do each step with proper mathematical concepts.
-}
-
-\begin{align*}
-	k_{i} &= h_{n}f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) &   &   &   &    &     &	&	 & 	&\\
-\end{align*}
-
-\begin{align*}
-	k_{1} &= h_{n}f(x_{n}, y_{n}) = h_{n}f_{n}\\ 
-	k_{2} &= h_{n}f(x_{n}+\alpha_{2}h_{n}, y_{n}+\beta_{21}k_{1})\\
-	k_{3} &= h_{n}f(x_{n}+\alpha_{3}h_{n}, y_{n} + \beta_{31}k_{1} + \beta_{32}k_{2})\\
-		  &= h_{n}f(x_{n}+\alpha_{3}h_{n}, y_{n} + \beta_{31}k_{1} + \beta_{32}k_{1} + \beta_{32}k_{2} - \beta_{32}k_{1})\\
-		  &= h_{n}f(x_{n} + \alpha_{3}h_{n}, y_{n}+\sum_{j = 1}^{i-1}\beta_{3j}k_{j} + \sum_{j=2}^{i-1}\beta_{32}(k_{2}-h_{n}f_{n}))\\
-	k_{4} &= h_{n}f(x_{n}+\alpha_{4}h_{n}, y_{n} + \beta_{41}k_{1} + \beta_{42}k_{2} + \beta_{43}k_{3})\\
-		  &=  h_{n}f(x_{n}+\alpha_{4}h_{n}, y_{n} + \beta_{41}k_{1} + \beta_{42}k_{1} + \beta_{43}k_{1} + \beta_{42}k_{2} + \beta_{43}k_{3} - \beta_{42}k_{1} - \beta_{43}k_{1})\\
-		  &= h_{n}f(x_{n} + \alpha_{4}h_{n}, y_{n} + \sum_{j = 1}^{i-1}\beta_{4j}h_{n}f_{n} + \beta_{42}(k_{2} - h_{n}f_{n}) + \beta_{43}(k_{3}-h_{n}f_{n}))\\
-		  &= h_{n}f(x_{n} + \alpha_{4}h_{n}, y_{n} + \sum_{j = 1}^{i-1}\beta_{4j}h_{n}f_{n} + \sum_{j=2}^{i-1}\beta_{4j}(k_{j}-h_{n}f_{n}))
-\end{align*}
-
-Let {\large $$D_{i} = \alpha_{i}\frac{\partial}{\partial x} + \sum_{j = 1}^{i - 1} (\beta_{ij})f_{n}\frac{\partial}{\partial y}$$}
-
-
-\begin{align*}
-	k_{i} &= h_{n}f\bigg[x_{n}+\alpha_{i}h_{n}, y_{n}+(\sum_{j=1}^{i-1}\beta_{ij})h_{n}f_{n} + \bigg(\sum_{j=2}^{i-1}\beta_{ij}(k_{j}-h_{n}f_{n})\bigg)\bigg] &    &     &     &	  &		&   &    &	  &\\
-	      &= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{i}+\sum_{j=2}^{i-1}\beta_{ij}(k_{j}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} &    &     &	 &		&	   &    &	  &     &\\
-\end{align*}
-
-{
-\large
-Since $\alpha_{1} = 0$ 
-\begin{equation}
-\begin{split}
-k_{1} =& h_{n}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-k_{2} =& h_{n}f(x_{n}+\alpha_{2}h_{n},y_{n}+\beta_{21}k_{1})=h_{n}f(x_{n}+\alpha_{2}h_{n},y_{n}+\beta_{21}h_{n}f_{n})\\
-      =& h_{n} \sum_{t=0}^{\infty}\frac{h_{n}^{t}D_{2}^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\     
-\end{split}
-\end{equation}
-}
-
-{
-	\large
+	
+	and,
+	
+	\begin{equation*}
+		\begin{split}
+			\frac{\mathop{\mathrm{d^{3}f}}}{\mathop{\mathrm{dx^{3}}}} &= \frac{\mathop{\mathrm{d}}}{\mathop{\mathrm{dx}}}\bigg(\frac{\partial f}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}\\ 
+			&=  \bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}_{x} +   f\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}_{y}\\
+			&= \frac{\partial }{\partial x}\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}+f\frac{\partial }{\partial y}\bigg(\frac{\partial f}{\partial x}+\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f}{\partial y}\bigg)^{2}=\bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)\bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)^{2}f\\
+			&= \bigg(\frac{\partial }{\partial x}+f\frac{\partial }{\partial y}\bigg)^{3}f\\
+		\end{split}
+	\end{equation*}
+	
+	
+	In addition, $y_{n}^{\prime} = f(x_{n},y_{n}),$ Assuming differentiability, it follows that 
+	
+	{
+		\Large
+		\begin{equation}\label{E4}
+			\begin{split}
+				y_{n}^{t} &= \frac{\mathop{\mathrm{d}^{t-1}}}{\mathop{\mathrm{dx}}^{t-1}} \left\{y^{\prime}(x_{n},y_{n})\right\}\\ 
+				&= \frac{\mathop{\mathrm{d}^{t-1}}}{\mathop{\mathrm{dx}}^{t-1}} f(x,y)_{|_{x_{n},y_{n}}}\\
+				&= \bigg(\frac{\partial}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial}{\partial y}\bigg)^{t-1}f(x_{n},y_{n})\\
+			\end{split}
+		\end{equation}
+	}
+	
+	Defining 
+	
+	\begin{equation*}
+		\begin{split}
+			D &= \bigg(\frac{\partial }{\partial x} + {\frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}}\frac{\partial }{\partial y}\bigg)\Big\vert_{x = x_{n}, y= y_{n}} = \bigg(\frac{\partial }{\partial x} + f_{n}\frac{\partial }{\partial y}\bigg)....f_{n} = f(x,y)\vert_{x_{n}, y_{n}}  \text{ is a constant}\\
+		\end{split}
+	\end{equation*}
+	
+	
+	{
+		\large
+		\begin{equation}
+			\begin{split}
+				D^{2} &= \bigg(\frac{\partial }{\partial x} + f_{n}\frac{\partial }{\partial y}\bigg)\cdot \bigg(\frac{\partial }{\partial x} + f_{n}\frac{\partial }{\partial y}\bigg)\\
+				&= \Big(\frac{\partial^{2}}{\partial x^{2}} + 2f_{n}\frac{\partial^{2}}{\partial x \partial y} + f_{n}^{2}\frac{\partial^{2}}{\partial y^{2}}\Big)\Big\vert_{n}
+			\end{split}
+		\end{equation}
+	}
+	
+	{
+		\large
+		\begin{equation*}
+			\begin{split}
+				\frac{\mathop{\mathrm{d^{2}f}}}{\mathop{\mathrm{dx^{2}}}}\Big\vert_{n} &= \Big(\frac{\partial^{2}f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2}f}{\partial y^{2}} + \frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\Big)\Big\vert_{n}\\
+				&= \Big(\frac{\partial^{2}f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2}f}{\partial y^{2}}\Big)\Big\vert_{n} + \frac{\partial f}{\partial y}\bigg(\frac{\partial f}{\partial x} + \frac{\mathop{\mathrm{dy}}}{\mathop{\mathrm{dx}}}\frac{\partial f }{\partial y}\bigg)\Big\vert_{n}\\
+				&=D^{2}f\Big\vert_{n}+f_{y}Df\Big\vert_{n}\\																   
+			\end{split}
+		\end{equation*}
+		
+	}
+	
+	{
+		\Large
+		\begin{equation*}
+			\begin{split}
+				\frac{\mathop{\mathrm{d^{3}f}}}{\mathop{\mathrm{dx^{3}}}} =& \frac{\mathop{\mathrm{d}}}{\mathop{\mathrm{dx}}}\bigg(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\bigg)^{2}=\bigg(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\bigg)^{3}\\
+				=& \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(\frac{\partial^{2}f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2}f}{\partial y^{2}} + \frac{\partial f}{\partial x}\frac{\partial f}{\partial y} + f\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\Big)\\
+				=& \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(\frac{\partial^{2}f}{\partial x^{2}}\Big) + \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(2f\frac{\partial^{2}f}{\partial x \partial y}\Big) + \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(f^{2}\frac{\partial^{2}f}{\partial y^{2}}\Big)\\
+				+& \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(\frac{\partial f}{\partial x}\frac{\partial f}{\partial y}\Big) + \bigg(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\bigg)\Big(f\frac{\partial f}{\partial y}\frac{\partial f}{\partial y}\Big)\\
+				=& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + f\frac{\partial^{3}f}{\partial x^{2}\partial y}} + 2\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + \Cline[blue]{2f\frac{\partial^{3}f}{\partial x^{2}\partial y}} + \Cline[red]{2f\frac{\partial^{2}f}{\partial x \partial y}\frac{\partial f}{\partial y}} + \Cline[blue]{2f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{2}\frac{\partial^{3}f}{\partial x\partial y^{2}}} \\
+				+& 2f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + \Cline[red]{f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}}} + f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + \Cline[blue]{f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial^{2} f}{\partial x^{2}}\frac{\partial f}{\partial y}} + \frac{\partial f}{\partial x}\frac{\partial^{2} f}{\partial x\partial y} +  f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f\frac{\partial^{2}f}{\partial x\partial y}\frac{\partial f}{\partial y}\\
+				+& \Cline[green]{\frac{\partial f}{\partial x}\Big(\frac{\partial f}{\partial y}\Big)^{2}} + 2f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y} + \Cline[green]{f\Big(\frac{\partial f}{\partial y}\Big)^{3}} + 2f^{2}\frac{\partial^{2} f}{\partial y^{2}}\frac{\partial f}{\partial y}\\
+				=& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + 2\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + \Cline[red]{2f\frac{\partial^{2}f}{\partial x \partial y}\frac{\partial f}{\partial y}} + 2f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}}\\
+				+& \Cline[red]{f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}}} + f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + \Cline[red]{\frac{\partial^{2} f}{\partial x^{2}}\frac{\partial f}{\partial y}} + \frac{\partial f}{\partial x}\frac{\partial^{2} f}{\partial x\partial y} + f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f\frac{\partial^{2}f}{\partial x\partial y}\frac{\partial f}{\partial y} + \Cline[green]{\frac{\partial f}{\partial x}\Big(\frac{\partial f}{\partial y}\Big)^{2}} \\
+				+& 2f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y} + \Cline[green]{f\Big(\frac{\partial f}{\partial y}\Big)^{3}} + 2f^{2}\frac{\partial^{2} f}{\partial y^{2}}\frac{\partial f}{\partial y}\\
+				=& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
+				+& 2\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + 2f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + \frac{\partial f}{\partial x}\frac{\partial^{2} f}{\partial x\partial y} + f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f\frac{\partial^{2}f}{\partial x\partial y}\frac{\partial f}{\partial y}\\
+				+& 2f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y} + 2f^{2}\frac{\partial^{2} f}{\partial y^{2}}\frac{\partial f}{\partial y}\\
+				=& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
+				+& 3\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + 3f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + 3f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + 3f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y}\\
+				=& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
+				+& 3\Big(\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial x \partial y} + f\frac{\partial f}{\partial x}\frac{\partial^{2}f}{\partial y^{2}} + f^{2}\frac{\partial f}{\partial y}\frac{\partial^{2}f}{\partial y^{2}} + f\frac{\partial^{2} f}{\partial x\partial y}\frac{\partial f}{\partial y}\Big)\\
+			\end{split}
+		\end{equation*}
+	}
+	
+	{
+		\Large
+		\begin{equation*}
+			\begin{split}
+				\frac{\mathop{\mathrm{d^{3}f}}}{\mathop{\mathrm{dx^{3}}}} =& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
+				+& 3\Big(\frac{\partial^{2}f}{\partial x\partial y}\Big\{\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big\} + f\frac{\partial^{2}f}{\partial y^{2}}\Big\{\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big\}\Big)\\
+				=& \Cline[blue]{\frac{\partial^{3}f}{\partial x^{3}} + 3f\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f^{2}\frac{\partial^{3}f}{\partial x \partial y^{2}} + f^{3}\frac{\partial^{3}f}{\partial y^{3}}} + \Cline[red]{\frac{\partial f}{\partial y}\Big(\frac{\partial^{2} f}{\partial x^{2}} + 2f\frac{\partial^{2}f}{\partial x \partial y} + f^{2}\frac{\partial^{2} f}{\partial y^{2}}\Big)} + \Cline[green]{\Big(\frac{\partial f}{\partial y}\Big)^{2}\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)}\\
+				+& 3\Big(\frac{\partial f}{\partial x} + f\frac{\partial f}{\partial y}\Big)\Big(\frac{\partial }{\partial x} + f\frac{\partial }{\partial y}\Big)\frac{\partial f}{\partial y}
+			\end{split}
+		\end{equation*}
+	}
+	
+	{
+		\large
+		\begin{equation*}
+			\begin{split}
+				D^{3} =& \bigg(\frac{\partial }{\partial x} + f_{n}\frac{\partial }{\partial y}\bigg)\bigg(\frac{\partial^{2}f}{\partial x^{2}} + 2f_{n}\frac{\partial^{2}f}{\partial x \partial y} + f_{n}^{2}\frac{\partial^{2}f}{\partial x^{2}}\bigg)\\
+				=& \frac{\partial }{\partial x}\bigg(\frac{\partial^{2}f}{\partial x^{2}} + 2f_{n}\frac{\partial^{2}f}{\partial x \partial y} + f_{n}^{2}\frac{\partial^{2}f}{\partial y^{2}}\bigg) + f_{n}\frac{\partial }{\partial y}\bigg(\frac{\partial^{2}f}{\partial x^{2}} + 2f_{n}\frac{\partial^{2}f}{\partial x \partial y} + f_{n}^{2}\frac{\partial^{2}f}{\partial y^{2}}\bigg)\\
+				=& \frac{\partial^{3}f}{\partial x^{3}} + 2f_{n}\frac{\partial^{3}f}{\partial x^{2}\partial y} + f_{n}^{2}\frac{\partial^{3}f}{\partial x\partial y^{2}} + f_{n}\frac{\partial^{3}f}{\partial x^{2}\partial y} + 2f_{n}^{2}\frac{\partial^{3}f}{\partial x\partial y^{2}} + f_{n}^{3}\frac{\partial^{3}f}{\partial y^{3}}\\ 
+				=& \frac{\partial^{3}f}{\partial x^{3}} + 3f_{n}\frac{\partial^{3}f}{\partial x^{2}\partial y} + 3f_{n}^{2}\frac{\partial^{3}f}{\partial x\partial y^{2}} + f_{n}^{3}\frac{\partial^{3}f}{\partial y^{3}}\\
+			\end{split}
+		\end{equation*}
+	}
+	
+	{
+		\Large
+		\begin{equation*}
+			\frac{\mathop{\mathrm{d^{3}f}}}{\mathop{\mathrm{dx^{3}}}}\Big\vert_{n} = D^{3}f + f_{y}D^{2}f + f_{y}^{2}Df + 3DfDf_{y}\Big\vert_{n}
+		\end{equation*}
+	}
+	
+	putting equation $\ref{E5}$ into $\ref{E4}$ 
+	
+	\begin{equation}\label{E6}
+		\begin{split}
+			y_{n+1}-y_{n} &= \sum_{t = 1}^{\infty}(h_{n})^{t}\frac{y_{n}^{(t)}}{t!}\\
+			&= \sum_{t = 1}^{\infty}h_{n}^{t+1}\cdot \frac{(\frac{\partial }{\partial x} +f\frac{\partial }{\partial y})^{t}}{(t+1)!}\cdot f(x_{n},y_{n})\\
+			&=\bigg[hf + \frac{h^{2}}{2!}Df + \frac{h^{3}}{3!}\bigg(D^{2}f+f_{y}Df\bigg)  \\
+			& + \frac{h^{4}}{4!}\bigg(D^{3}f + f_{y}D^{2}f + f_{y}^{2}Df + 3DfDf_{y}\bigg) \\
+			& + \frac{h^{5}}{5!}\bigg(D^{4}f+6DfD^{2}f_{y} + f_{y}^{2}D^{2}f + f_{y}^{3}Df \\
+			& + 3f_{yy}(Df)^{2} + f_{y}D^{3}f + 7f_{y}DfDf_{y}\bigg)\bigg] + O(h^{6})\\
+		\end{split}
+	\end{equation}
+	{
+		\color{red}
+		\large
+		My derivation upto this point is consistent and I can do each step with proper mathematical concepts.
+	}
+	
+	\begin{align*}
+		k_{i} &= h_{n}f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) &   &   &   &    &     &	&	 & 	&\\
+	\end{align*}
+	
+	\begin{align*}
+		k_{1} &= h_{n}f(x_{n}, y_{n}) = h_{n}f_{n}\\ 
+		k_{2} &= h_{n}f(x_{n}+\alpha_{2}h_{n}, y_{n}+\beta_{21}k_{1})\\
+		k_{3} &= h_{n}f(x_{n}+\alpha_{3}h_{n}, y_{n} + \beta_{31}k_{1} + \beta_{32}k_{2})\\
+		&= h_{n}f(x_{n}+\alpha_{3}h_{n}, y_{n} + \beta_{31}k_{1} + \beta_{32}k_{1} + \beta_{32}k_{2} - \beta_{32}k_{1})\\
+		&= h_{n}f(x_{n} + \alpha_{3}h_{n}, y_{n}+\sum_{j = 1}^{i-1}\beta_{3j}k_{j} + \sum_{j=2}^{i-1}\beta_{32}(k_{2}-h_{n}f_{n}))\\
+		k_{4} &= h_{n}f(x_{n}+\alpha_{4}h_{n}, y_{n} + \beta_{41}k_{1} + \beta_{42}k_{2} + \beta_{43}k_{3})\\
+		&=  h_{n}f(x_{n}+\alpha_{4}h_{n}, y_{n} + \beta_{41}k_{1} + \beta_{42}k_{1} + \beta_{43}k_{1} + \beta_{42}k_{2} + \beta_{43}k_{3} - \beta_{42}k_{1} - \beta_{43}k_{1})\\
+		&= h_{n}f(x_{n} + \alpha_{4}h_{n}, y_{n} + \sum_{j = 1}^{i-1}\beta_{4j}h_{n}f_{n} + \beta_{42}(k_{2} - h_{n}f_{n}) + \beta_{43}(k_{3}-h_{n}f_{n}))\\
+		&= h_{n}f(x_{n} + \alpha_{4}h_{n}, y_{n} + \sum_{j = 1}^{i-1}\beta_{4j}h_{n}f_{n} + \sum_{j=2}^{i-1}\beta_{4j}(k_{j}-h_{n}f_{n}))
+	\end{align*}
+	
+	Let {\large $$D_{i} = \alpha_{i}\frac{\partial}{\partial x} + \sum_{j = 1}^{i - 1} (\beta_{ij})f_{n}\frac{\partial}{\partial y}$$}
+	
+	
+	\begin{align*}
+		k_{i} &= h_{n}f\bigg[x_{n}+\alpha_{i}h_{n}, y_{n}+(\sum_{j=1}^{i-1}\beta_{ij})h_{n}f_{n} + \bigg(\sum_{j=2}^{i-1}\beta_{ij}(k_{j}-h_{n}f_{n})\bigg)\bigg] &    &     &     &	  &		&   &    &	  &\\
+		&= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{i}+\sum_{j=2}^{i-1}\beta_{ij}(k_{j}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} &    &     &	 &		&	   &    &	  &     &\\
+	\end{align*}
+	
+	{
+		\large
+		Since $\alpha_{1} = 0$ 
+		\begin{equation}
+			\begin{split}
+				k_{1} =& h_{n}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+				k_{2} =& h_{n}f(x_{n}+\alpha_{2}h_{n},y_{n}+\beta_{21}k_{1})=h_{n}f(x_{n}+\alpha_{2}h_{n},y_{n}+\beta_{21}h_{n}f_{n})\\
+				=& h_{n} \sum_{t=0}^{\infty}\frac{h_{n}^{t}D_{2}^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\     
+			\end{split}
+		\end{equation}
+	}
+	
+	{
+		\large
+		\begin{equation}
+			\begin{split}
+				k_{3} = & h_{n}f(x_{n}+\alpha_{3}h_{n},y_{n}+\beta_{31}k_{1}+\beta_{32}k_{2})\\
+				=	& h_{n}f\bigg[x_{n}+\alpha_{3}h_{n},y_{n}+h_{n}f_{n}(\beta_{31}+\beta_{32})+\beta_{32}(k_{2}-h_{n}f_{n})\bigg]\\
+				= & h_{n}\sum_{t=0}^{\infty}\frac{\bigg(\alpha_{i}h_{n}\frac{\partial}{\partial x} + (\beta_{31}+\beta_{32})h_{n}f_{n}\frac{\partial}{\partial y} + \beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)}{t!}^{t}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+				=&h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\ 
+			\end{split}
+		\end{equation}
+	}
+	
+	
+	
+	{
+		\begin{equation}
+			\begin{split}	  	  
+				k_{4} =& h_{n}f(x_{n}+\alpha_{4}h_{n},y_{n}+\beta_{41}k_{1}+\beta_{42}k_{2}+\beta_{43}k_{3})\\
+				=& h_{n}f\bigg[x_{n}+\alpha_{2}h_{n},y_{n}+h_{n}f_{n}(\beta_{41}+\beta_{42}+\beta_{43})+\beta_{41}(k_{1}-h_{n}f_{n})+\beta_{42}(k_{2}-h_{n}f_{n})\\
+				& +\beta_{43}(k_{3}-h_{n}f_{n})\bigg]\\
+				=& h_{n}f\bigg[x_{n}+\alpha_{4}h_{n}, y_{n}+(\sum_{j=1}^{3}\beta_{4j})h_{n}f_{n} + (\sum_{j=2}^{3}\beta_{4j})(k_{j}-h_{n}f_{n})\bigg]\\
+				=& h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{4}+\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+			\end{split}
+		\end{equation}
+	}
+	
+	{
+		\large
+		$$f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) = \sum_{t=0}^{\infty}\frac{h_{n}^{t}D^{t}_{i}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}$$
+	}
+	
+	{
+		\normalsize
+		\begin{align*}
+			k_{1} =& h_{n}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\ 
+			=& h_{n}f_{n} \\
+			k_{2} =& h_{n}\bigg(\frac{h_{n}^{0}D_{2}^{0}}{0!}f(x,y) + \frac{h_{n}^{1}D_{2}^{1}}{1!}f(x,y) + \frac{h_{n}^{2}D_{2}^{2}}{2!}f(x,y) + \frac{h_{n}^{3}D_{2}^{3}}{3!}f(x,y) + \frac{h_{n}^{4}D_{2}^{4}}{4!}f(x,y)\bigg)\bigg\vert_{x = x_{n}, y= y_{n}}\\ 
+			+& O(h_{n}^{6})\\
+			=& h_{n}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{h_{n}^{2}}{1!}D_{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{h_{n}^{4}}{3!}D_{2}^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\ 
+			+& \frac{h_{n}^{5}}{4!}D_{2}^{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + O(h_{n}^{6})\\
+		\end{align*}
+	}
+	
+	We will express  $D_{i}^{t}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} = D_{i}^{t}f_{n}$. Which means the differentiation is already done than the expression is evaluated at $(x= x_{n}, y=y_{n})$ and represents a constant value
+	
+	{
+		\large
+		\begin{align*}
+			(k_{2}-h_{n}f_{n}) \text{ }=&  h_{n}^{2}D_{2}f_{n} + \frac{h^{3}}{2!}D_{2}^{2}f_{n} + \frac{h_{n}^{4}}{3!}D_{2}^{3}f_{n} + \frac{h_{n}^{5}}{4!}D_{2}^{4}f_{n} + O(h^{6})\\
+		\end{align*}
+	}
+	
+	The evaluated $(k_{2} - h_{n}f_{n})$ expression is constant
+	
+	{
+		\normalsize
+		\begin{align*}
+			&h_{n}\bigg[h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} \\
+			&= h\bigg[hD_{3} + \beta_{32}\bigg(\frac{h^{2}}{1!}D_{2}f_{n} + \frac{h^{3}}{2!}D_{2}^{2}f_{n} + \frac{h^{4}}{3!}D_{2}^{3}f_{n} + \frac{h^{5}}{4!}D_{2}^{4}f_{n}\bigg)\frac{\partial}{\partial y}\bigg]^{2}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}}\\
+			&= \color{red}h_{n}\bigg[hD_{3} + \beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} +\frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}  \bigg)\frac{\partial}{\partial y}\bigg]\color{blue}\bigg[h_{n}D_{3}f(x,y) + \beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\
+			&= \color{red}\bigg[h_{n}^{2}D_{3} + \beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n} + \frac{h_{n}^{4}}{2!}D_{2}^{2}f_{n}  \bigg)\frac{\partial}{\partial y}\bigg]\color{blue}\bigg[h_{n}D_{3}f(x,y) + \beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\
+			&= \color{red}h_{n}^{2}D_{3}\color{blue}\big[h_{n}D_{3}f(x,y)\big]\bigg\vert_{x = x_{n}, y= y_{n}} \color{black} + \color{red}h_{n}^{2}D_{3}\color{blue}\bigg\{\beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)f_{y}(x,y)\bigg\}\bigg\vert_{x = x_{n}, y= y_{n}} \color{black}\\
+			&+ \color{red}\beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n} + \frac{h_{n}^{4}}{2!}D_{2}^{2}f_{n} \bigg)\frac{\partial}{\partial y}\color{blue}\bigg[h_{n}D_{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\ 
+			&+ \color{red}\beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n} + \frac{h_{n}^{4}}{2!}D_{2}^{2}f_{n} \bigg)\frac{\partial}{\partial y}\color{blue}\bigg[\beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} +\color{blue}\frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\
+			&= h_{n}^{3}D_{3}^{2}f_{n} + h_{n}^{2}\beta_{32}D_{3}\bigg\{ \frac{h_{n}^{2}}{1!}f_{y}(x,y)D_{2}f_{n}\bigg\} + h_{n}^{2}\beta_{32}D_{3}\bigg\{\frac{h^{3}}{2!}f_{y}(x,y)D_{2}^{2}f_{n}\bigg\} + \beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n}\bigg)\frac{\partial}{\partial y}\bigg[h_{n}D_{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}  \\
+			&+ \beta_{32}\bigg(\frac{h_{n}^{4}}{2!}D_{2}^{2}f_{n}\bigg)\frac{\partial}{\partial y}\bigg[h_{n}D_{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}} + \beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n}\bigg)\frac{\partial}{\partial y}\bigg[\beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n}\bigg)f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\
+			&= h_{n}^{3}D_{3}^{2}f_{n} + h_{n}^{4}\beta_{32}D_{3}f_{y_{|_{n}}}D_{2}f_{n} + \frac{h_{n}^{5}}{2!}\beta_{32}D_{3}f_{y_{|_{n}}}D_{2}^{2}f_{n}	+ h_{n}^{4}\beta_{23}D_{3}f_{y_{|_{n}}}D_{2}f_{n} + \frac{h_{n}^{5}}{2!}\beta_{23}D_{3}f_{y_{|_{n}}}D_{2}^{2}f_{n} + h_{n}^{5}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}}\\
+			&= h_{n}^{3}D_{3}^{2}f_{n} + 2h_{n}^{4}(D_{2}f_{n})D_{3}f_{y_{|_{n}}} + h_{n}^{5}\beta_{32}(D_{2}^{2}f_{n})D_{3}f_{y_{|_{n}}} + h_{n}^{5}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}}							
+		\end{align*}
+	}
+	
+	\begin{align*}
+		&h_{n}\bigg[h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}f \\
+		&= \bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[h_{n}\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{2}\bigg]f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} + O(h_{n}^{6})\\
+		&= \bigg(h_{n}D_{3}+\beta_{32}h_{n}^{2}D_{2}f_{n}\frac{\partial}{\partial y}\bigg)\bigg[h_{n}^{3}D_{3}^{2}f(x,y) + 2h_{n}^{4}\beta_{32}(D_{2}f_{n})D_{3}f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}} + O(h^{6})\\
+		&= h_{n}^{4}D_{3}^{3}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} + 2h^{5}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y}(x,y)\bigg\vert_{x = x_{n}, y= y_{n}}	+ h^{5}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y}(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} + O(h^{6})\\
+	\end{align*}
+	
+	\begin{align*}
+		h_{n}\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{3}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} &= h_{n}^{4}D_{3}^{3}f_{n} + 3h_{n}^{5}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y_{|_{n}}} + O(h^{6})	
+	\end{align*}
+	
+	\begin{align*}
+		h_{n}\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{4}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} &= \bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\\
+		&\bigg[h_{n}\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}} \\
+		&+ O(h_{n}^{6})\\
+		&=\bigg(h_{n}D_{3}\bigg)\bigg[h_{n}^{4}D_{3}^{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}} + O(h_{n}^{6})\\
+		&= h_{n}^{5}D_{3}^{4}f_{n} + O(h_{n}^{6})
+	\end{align*}
+	
+	{
+		\normalsize
+		\begin{equation}
+			\begin{split}
+				k_{3} &= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}}\\
+				&= h_{n}f_{n} + h_{n}^{2}D_{3}f_{n} + h_{n}\beta_{32}(k_{2}-h_{n}f_{n})f_{y_{|_{n}}} + h_{n}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{2}}{2!}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} \\
+				&+ h_{n}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{3}}{3!}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}}  +h_{n}\frac{\bigg(hD_{3}+\beta_{32}(k_{2}-hf)\frac{\partial}{\partial y}\bigg)^{4}}{4!}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} + O(h^{6}) \\
+				&= h_{n}f_{n} + h_{n}^{2}D_{3}f_{n} + h_{n}\beta_{32}\bigg( h_{n}^{2}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n} + \frac{h^{4}}{3!}D_{2}^{3}f_{n}\bigg)f_{y_{|_{n}}} + \frac{h_{n}^{3}}{2}D_{3}^{2}f_{n} + h_{n}^{4}\beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}} \\
+				&+ \frac{h_{n}^{5}}{2}\beta_{32}(D_{2}^{2}f_{n})D_{3}f_{y_{|_{n}}} + \frac{h_{n}^{5}}{2}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}} + \frac{h_{n}^{4}}{6}D_{3}^{3}f_{n} + \frac{h^{5}}{2}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y_{|_{n}}} + \frac{h^{5}}{24}D_{3}^{4}f_{n} + O(h^{6})\\
+				&= h_{n}f_{n} + h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\beta_{32}f_{y_{|_{n}}}D_{2}f_{n} + \frac{h_{n}^{4}}{2}\beta_{32}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \frac{h_{n}^{5}}{6}\beta_{32}f_{y_{|_{n}}}D_{2}^{3}f_{n} + \frac{h_{n}^{3}}{2}D_{3}^{2}f_{n} + h_{n}^{4}\beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}\\
+				&+ \frac{h_{n}^{5}}{2}\beta_{32}(D_{2}^{2}f_{n})D_{3}f_{y_{|_{n}}} + \frac{h_{n}^{5}}{2}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}} + \frac{h_{n}^{4}}{6}D_{3}^{3}f_{n} + \frac{h_{n}^{5}}{2}\beta_{32}D_{3}^{2}f_{y_{|_{n}}}D_{2}f_{n} + \frac{h_{n}^{5}}{24}D_{3}^{4}f_{n} + O(h^{6})\\
+				&= h_{n}f_{n} + h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n} + \beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg) + h_{n}^{4}\bigg(\frac{1}{6}D_{3}^{3}f_{n} + \frac{1}{2}\beta_{32}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}\bigg) \\
+				&+ h^{5}\bigg(\frac{1}{24}D^{4}_{3}f_{n} + \frac{1}{6}\beta_{32}f_{y_{|_{n}}}D_{2}^{3}f_{n} + \frac{1}{2}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}} + \frac{1}{2}\beta_{32}(D_{2}^{2}f_{n})D_{3}f_{y_{|_{n}}} + \frac{1}{2}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y_{|_{n}}}\bigg) + O(h_{n}^{6})
+			\end{split}
+		\end{equation}
+	}
+	\normalsize
+	\begin{align*}
+		k_{3} - h_{n}f_{n} &= h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n} + \beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg) + h_{n}^{4}\bigg(\frac{1}{6}D_{3}^{3}f_{n} + \frac{1}{2}\beta_{32}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}\bigg)
+	\end{align*}
+	
+	\begin{align*}
+		&h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\beta_{42}(k_{2}-h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\beta_{43}(k_{3}-h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= h_{n}^{2}D_{4}f_{n} + h_{n}\beta_{42}\bigg(h_{n}^{2}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n} + \frac{h_{n}^{4}}{3!}D_{2}^{3}f_{n}\bigg)f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\beta_{43}\bigg[h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n} + \beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg) \\
+		&+ h_{n}^{4}\bigg(\frac{1}{6}D_{3}^{3}f_{n} + \frac{1}{2}\beta_{32}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}\bigg)\bigg]f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= \color{red}h_{n}^{2}D_{4}f(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \color{orange}h_{n}^{3}\bigg(\beta_{42}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg) \\
+		&\color{green}+ h_{n}^{4}\bigg(\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)\\
+		&+\color{blue}h_{n}^{5}\bigg(\frac{1}{6}\beta_{42}(D_{2}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} +\frac{1}{6}\beta_{43}(D_{3}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
+		&\color{blue}+ \beta_{32}\beta_{43}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)
+	\end{align*}
+	
+	
+	\newpage
+	\begin{align*}
+		& h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \\
+		&= \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[h_{n}^{2}D_{4} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= h_{n}D_{4}\bigg[h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+		&+ \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+		&= h_{n}D_{4}\bigg[h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg] + h_{n}D_{4}\bigg[h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+		&+ \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg] + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+		&= h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+		&+h_{n}\bigg(\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})\bigg)^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\beta_{42}(k_{2}-h_{n}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\beta_{43}(k_{3}-h_{n}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&+ h_{n}^{2}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg] + h_{n}\bigg[\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})\bigg]^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} +  h_{n}^{2}\beta_{42}\bigg(h_{n}^{2}D_{2}f_{n}+\frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} \\
+		&+ h_{n}^{2}\beta_{43}\bigg[h_{n}^{2}D_{3}f_{n}+ h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n}+\beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg)\bigg]D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\bigg[\beta_{42}(k_{2}- h_{n}f_{n}) + \beta_{43}(k_{3}-h_{n}f_{n})\bigg]D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&+ h_{n}\bigg[\beta_{42}(k_{2}-h_{n}f_{n}) + \beta_{43}(k_{3}-h_{n}f_{n})\bigg]^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} +  h_{n}^{2}\beta_{42}\bigg(h_{n}^{2}D_{2}f_{n}+\frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{4}\beta_{43}D_{3}f_{n}D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+		&+ h_{n}^{5}\beta_{43}\bigg(\frac{1}{2}D_{3}^{2}f_{n}+\beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg)D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}^{2}\beta_{42}\bigg[h_{n}^{2}D_{2}f_{n} + \frac{h_{n}^{3}}{2}D_{2}^{2}f_{n}\bigg]D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+		&+ h_{n}^{2}\beta_{43}\bigg[h_{n}^{2}D_{3}f_{n}+h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n}+\beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg)\bigg]D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + h_{n}\bigg[\beta_{42}h_{n}^{2}D_{2}f_{n} + \beta_{43}h_{n}^{2}D_{3}f_{n}\bigg]^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+		&= \color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \color{green}h_{n}^{4}\bigg[2\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \bigg]\\
+		&\color{blue}+ h_{n}^{5}\bigg[\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&\color{blue}+\frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&\color{blue}+\beta_{42}^{2}(D_{2}f_{n})^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}^{2}(D_{3}f_{n})^{2}f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{42}\beta_{43}(D_{2}f_{n})(D_{3}f_{n})f_{yy}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+		&=  \color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{green}+ h_{n}^{4}\bigg(2\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg) \\
+		&\color{blue}+h_{n}^{5}\bigg(\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + 2\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+		&\color{blue}+ \beta_{42}^{2}(D_{2}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \beta_{43}^{2}(D_{3}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + 2\beta_{42}\beta_{43}(D_{3}f_{n})(D_{2}f_{n})f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg)
+	\end{align*}
+	
+	
+	\newpage
+	\begin{align*}
+		&h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[h_{n}^{2}D_{4} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[\color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{green} + h_{n}^{4}\bigg(2\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg)\color{black}\bigg]\\
+		&= h_{n}D_{4}\bigg[\color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{green} + h_{n}^{4}\bigg(2\beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg)\color{black}\bigg] + \\
+		&+ \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg[\color{orange}h_{n}^{3}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\color{black}\bigg]\\
+		&= \color{green}h_{n}^{4}D_{4}^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{blue}+ h_{n}^{5}\bigg(2\beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 2\beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&\color{blue}+\beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg)\\
+		&= \color{green}h_{n}^{4}D_{4}^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{blue}+h_{n}^{5}\bigg(3\beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + 3\beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg)
+	\end{align*}
+	
+	\begin{align*}
+		&h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&=  \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[h_{n}^{2}D_{4} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+		&= h_{n}D_{4}\bigg[\color{green}h_{n}^{4}D_{4}^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{blue}\bigg] + O(h_{n}^{6})\\
+		&= \color{blue}h_{n}^{5}D_{4}^{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} \color{black}+ O(h_{n}^{6})
+	\end{align*}
+	
+	\normalsize
 	\begin{equation}
 		\begin{split}
-k_{3} = & h_{n}f(x_{n}+\alpha_{3}h_{n},y_{n}+\beta_{31}k_{1}+\beta_{32}k_{2})\\
-	  =	& h_{n}f\bigg[x_{n}+\alpha_{3}h_{n},y_{n}+h_{n}f_{n}(\beta_{31}+\beta_{32})+\beta_{32}(k_{2}-h_{n}f_{n})\bigg]\\
-	  = & h_{n}\sum_{t=0}^{\infty}\frac{\bigg(\alpha_{i}h_{n}\frac{\partial}{\partial x} + (\beta_{31}+\beta_{32})h_{n}f_{n}\frac{\partial}{\partial y} + \beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)}{t!}^{t}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	  =&h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\ 
-\end{split}
-\end{equation}
-}
-
-
-	  
-{
-\begin{equation}
-\begin{split}	  	  
-k_{4} =& h_{n}f(x_{n}+\alpha_{4}h_{n},y_{n}+\beta_{41}k_{1}+\beta_{42}k_{2}+\beta_{43}k_{3})\\
-	  =& h_{n}f\bigg[x_{n}+\alpha_{2}h_{n},y_{n}+h_{n}f_{n}(\beta_{41}+\beta_{42}+\beta_{43})+\beta_{41}(k_{1}-h_{n}f_{n})+\beta_{42}(k_{2}-h_{n}f_{n})\\
-	  	  & +\beta_{43}(k_{3}-h_{n}f_{n})\bigg]\\
-	  =& h_{n}f\bigg[x_{n}+\alpha_{4}h_{n}, y_{n}+(\sum_{j=1}^{3}\beta_{4j})h_{n}f_{n} + (\sum_{j=2}^{3}\beta_{4j})(k_{j}-h_{n}f_{n})\bigg]\\
-	  =& h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{4}+\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-\end{split}
-\end{equation}
-}
-
-{
+			k_{4} &= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{4}+\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+			&= h_{n}f_{n} + h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}}{2!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+			&+  h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}}{3!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} +  h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{4}}{4!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + ...\\
+			&= \color{brown}h_{n}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \color{red}h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \color{orange}h_{n}^{3}\bigg[\frac{1}{2}D_{4}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{42}(D_{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
+			&\color{orange}+ \beta_{43}(D_{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\bigg] + \color{green}h_{n}^{4}\bigg[\frac{1}{6}D_{4}^{3}f(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
+			&\color{green}+ \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{42}(D_{2}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \beta_{43}(D_{3}f_{n})D_{4}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]\\
+			&\color{blue}+h_{n}^{5}\bigg[\frac{1}{24}D_{4}^{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{6}\beta_{42}(D_{2}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} +\frac{1}{6}\beta_{43}(D_{3}^{3}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}^{2}f_{n})f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}}\\
+			&\color{blue}+ \beta_{32}\beta_{43}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}^{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
+			&\color{blue}+ \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n})D_{4}f_{y}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}^{2}(D_{2}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}^{2}(D_{3}f_{n})^{2}f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} \\
+			&\color{blue}+ \beta_{42}\beta_{43}(D_{3}f_{n})(D_{2}f_{n})f_{yy}(x,y)\bigg\vert_{x=x_{n}, y= y_{n}} + \frac{1}{2}\beta_{42}(D_{2}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{1}{2}\beta_{43}(D_{3}f_{n})D_{4}^{2}f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\bigg]
+		\end{split}
+	\end{equation}
+	
+	
+	
 	\large
-	$$f(x_{n}+\alpha_{i}h_{n}, y_{n}+\sum_{j=1}^{i-1}\beta_{ij}k_{j}) = \sum_{t=0}^{\infty}\frac{h_{n}^{t}D^{t}_{i}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}$$
-}
-
-{
-\normalsize
-\begin{align*}
-k_{1} =& h_{n}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\ 
-	  =& h_{n}f_{n} \\
-k_{2} =& h_{n}\bigg(\frac{h_{n}^{0}D_{2}^{0}}{0!}f(x,y) + \frac{h_{n}^{1}D_{2}^{1}}{1!}f(x,y) + \frac{h_{n}^{2}D_{2}^{2}}{2!}f(x,y) + \frac{h_{n}^{3}D_{2}^{3}}{3!}f(x,y) + \frac{h_{n}^{4}D_{2}^{4}}{4!}f(x,y)\bigg)\bigg\vert_{x = x_{n}, y= y_{n}}\\ 
-	  +& O(h_{n}^{6})\\
-	  =& h_{n}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{h_{n}^{2}}{1!}D_{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + \frac{h_{n}^{4}}{3!}D_{2}^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\ 
-	  +& \frac{h_{n}^{5}}{4!}D_{2}^{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + O(h_{n}^{6})\\
-\end{align*}
-}
-
-We will express  $D_{i}^{t}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} = D_{i}^{t}f_{n}$. Which means the differentiation is already done than the expression is evaluated at $(x= x_{n}, y=y_{n})$ and represents a constant value
-
-{
-\large
-\begin{align*}
-(k_{2}-h_{n}f_{n}) \text{ }=&  h_{n}^{2}D_{2}f_{n} + \frac{h^{3}}{2!}D_{2}^{2}f_{n} + \frac{h_{n}^{4}}{3!}D_{2}^{3}f_{n} + \frac{h_{n}^{5}}{4!}D_{2}^{4}f_{n} + O(h^{6})\\
-\end{align*}
-}
-
-The evaluated $(k_{2} - h_{n}f_{n})$ expression is constant
-
-{
-\normalsize
-\begin{align*}
-h_{n}\bigg[h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} =& h\bigg[hD_{3} + \beta_{32}\bigg(\frac{h^{2}}{1!}D_{2}f_{n} + \frac{h^{3}}{2!}D_{2}^{2}f_{n} + \frac{h^{4}}{3!}D_{2}^{3}f_{n} \\
-    +& \frac{h^{5}}{4!}D_{2}^{4}f_{n}\bigg)\frac{\partial}{\partial y}\bigg]^{2}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}}\\
-	=& \color{red}h_{n}\bigg[hD_{3} + \beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} +\frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}  \bigg)\frac{\partial}{\partial y}\bigg]\\
-	&\color{blue}\bigg[h_{n}D_{3}f(x,y) + \beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\
-	=& \color{red}\bigg[h_{n}^{2}D_{3} + \beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n} + \frac{h_{n}^{4}}{2!}D_{2}^{2}f_{n}  \bigg)\frac{\partial}{\partial y}\bigg]\\
-	&\color{blue}\bigg[h_{n}D_{3}f(x,y) + \beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\
-	=& \color{red}h_{n}^{2}D_{3}\color{blue}\big[h_{n}D_{3}f(x,y)\big]\bigg\vert_{x = x_{n}, y= y_{n}} \color{black} \\
-	+& \color{red}h_{n}^{2}D_{3}\color{blue}\bigg\{\beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)f_{y}(x,y)\bigg\}\bigg\vert_{x = x_{n}, y= y_{n}} \color{black}\\
-	+& \color{red}\beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n} + \frac{h_{n}^{4}}{2!}D_{2}^{2}f_{n} \bigg)\frac{\partial}{\partial y}\color{blue}\bigg[h_{n}D_{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\ 
-	+& \color{red}\beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n} + \frac{h_{n}^{4}}{2!}D_{2}^{2}f_{n} \bigg)\frac{\partial}{\partial y}\color{blue}\bigg[\beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n} \\
-	+&\color{blue}\frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n}\bigg)f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\
-	=& h_{n}^{3}D_{3}^{2}f_{n} + h_{n}^{2}\beta_{32}D_{3}\bigg\{ \frac{h_{n}^{2}}{1!}f_{y}(x,y)D_{2}f_{n}\bigg\} + h_{n}^{2}\beta_{32}D_{3}\bigg\{\frac{h^{3}}{2!}f_{y}(x,y)D_{2}^{2}f_{n}\bigg\}\\
-	+& \beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n}\bigg)\frac{\partial}{\partial y}\bigg[h_{n}D_{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}  \\
-	+& \beta_{32}\bigg(\frac{h_{n}^{4}}{2!}D_{2}^{2}f_{n}\bigg)\frac{\partial}{\partial y}\bigg[h_{n}D_{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\ 
-	+& \beta_{32}\bigg(\frac{h_{n}^{3}}{1!}D_{2}f_{n}\bigg)\frac{\partial}{\partial y}\bigg[\beta_{32}\bigg(\frac{h_{n}^{2}}{1!}D_{2}f_{n}\bigg)f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}}\\
-	=& h_{n}^{3}D_{3}^{2}f_{n} + h_{n}^{4}\beta_{32}D_{3}f_{y_{|_{n}}}D_{2}f_{n} + \frac{h_{n}^{5}}{2!}\beta_{32}D_{3}f_{y_{|_{n}}}D_{2}^{2}f_{n}\\
-	+& h_{n}^{4}\beta_{23}D_{3}f_{y_{|_{n}}}D_{2}f_{n} + \frac{h_{n}^{5}}{2!}\beta_{23}D_{3}f_{y_{|_{n}}}D_{2}^{2}f_{n} + h_{n}^{5}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}}\\
-	=& h_{n}^{3}D_{3}^{2}f_{n} + 2h_{n}^{4}(D_{2}f_{n})D_{3}f_{y_{|_{n}}} + h_{n}^{5}\beta_{32}(D_{2}^{2}f_{n})D_{3}f_{y_{|_{n}}} + h_{n}^{5}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}}							
-\end{align*}
-}
-
-\begin{align*}
-h_{n}\bigg[h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}f =& \bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\bigg[h_{n}\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{2}\bigg]f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} \\
-    +& O(h_{n}^{6})\\
-	=& \bigg(h_{n}D_{3}+\beta_{32}h_{n}^{2}D_{2}f_{n}\frac{\partial}{\partial y}\bigg)\bigg[h_{n}^{3}D_{3}^{2}f(x,y) + 2h_{n}^{4}\beta_{32}(D_{2}f_{n})D_{3}f_{y}(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}} \\
-	+& O(h^{6})\\
-	=& h_{n}^{4}D_{3}^{3}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} + 2h^{5}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y}(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} \\
-	+& h^{5}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y}(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} + O(h^{6})\\
-\end{align*}
-
-\begin{align*}
-h_{n}\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{3}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} &= h_{n}^{4}D_{3}^{3}f_{n} + 3h_{n}^{5}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y_{|_{n}}} + O(h^{6})	
-\end{align*}
-
-\begin{align*}
-	h_{n}\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{4}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} &= \bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\\
-					 &\bigg[h_{n}\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}} \\
-	                 &+ O(h_{n}^{6})\\
-					 &=\bigg(h_{n}D_{3}\bigg)\bigg[h_{n}^{4}D_{3}^{3}f(x,y)\bigg]\bigg\vert_{x = x_{n}, y= y_{n}} + O(h_{n}^{6})\\
-					 &= h_{n}^{5}D_{3}^{4}f_{n} + O(h_{n}^{6})
-\end{align*}
-
-{
-\normalsize
-\begin{equation}
-\begin{split}
-k_{3} &= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}}\\
-	  &= h_{n}f_{n} + h_{n}^{2}D_{3}f_{n} + h_{n}\beta_{32}(k_{2}-h_{n}f_{n})f_{y_{|_{n}}} + h_{n}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{2}}{2!}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} \\
-	  &+ h_{n}\frac{\bigg(h_{n}D_{3}+\beta_{32}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{3}}{3!}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}}  +h_{n}\frac{\bigg(hD_{3}+\beta_{32}(k_{2}-hf)\frac{\partial}{\partial y}\bigg)^{4}}{4!}f(x,y)\bigg\vert_{x = x_{n}, y= y_{n}} + O(h^{6}) \\
-	  &= h_{n}f_{n} + h_{n}^{2}D_{3}f_{n} + h_{n}\beta_{32}\bigg( h_{n}^{2}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n} + \frac{h^{4}}{3!}D_{2}^{3}f_{n}\bigg)f_{y_{|_{n}}} + \frac{h_{n}^{3}}{2}D_{3}^{2}f_{n} + h_{n}^{4}\beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}} \\
-	  &+ \frac{h_{n}^{5}}{2}\beta_{32}(D_{2}^{2}f_{n})D_{3}f_{y_{|_{n}}} + \frac{h_{n}^{5}}{2}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}} + \frac{h_{n}^{4}}{6}D_{3}^{3}f_{n} + \frac{h^{5}}{2}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y_{|_{n}}} + \frac{h^{5}}{24}D_{3}^{4}f_{n} + O(h^{6})\\
-	  &= h_{n}f_{n} + h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\beta_{32}f_{y_{|_{n}}}D_{2}f_{n} + \frac{h_{n}^{4}}{2}\beta_{32}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \frac{h_{n}^{5}}{6}\beta_{32}f_{y_{|_{n}}}D_{2}^{3}f_{n} + \frac{h_{n}^{3}}{2}D_{3}^{2}f_{n} + h_{n}^{4}\beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}\\
-	  &+ \frac{h_{n}^{5}}{2}\beta_{32}(D_{2}^{2}f_{n})D_{3}f_{y_{|_{n}}} + \frac{h_{n}^{5}}{2}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}} + \frac{h_{n}^{4}}{6}D_{3}^{3}f_{n} + \frac{h_{n}^{5}}{2}\beta_{32}D_{3}^{2}f_{y_{|_{n}}}D_{2}f_{n} + \frac{h_{n}^{5}}{24}D_{3}^{4}f_{n} + O(h^{6})\\
-	  &= h_{n}f_{n} + h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n} + \beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg) + h_{n}^{4}\bigg(\frac{1}{6}D_{3}^{3}f_{n} + \frac{1}{2}\beta_{32}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}\bigg) \\
-	  &+ h^{5}\bigg(\frac{1}{24}D^{4}_{3}f_{n} + \frac{1}{6}\beta_{32}f_{y_{|_{n}}}D_{2}^{3}f_{n} + \frac{1}{2}\beta_{32}^{2}(D_{2}f_{n})^{2}f_{yy_{|_{n}}} + \frac{1}{2}\beta_{32}(D_{2}^{2}f_{n})D_{3}f_{y_{|_{n}}} + \frac{1}{2}\beta_{32}(D_{2}f_{n})D_{3}^{2}f_{y_{|_{n}}}\bigg) + O(h_{n}^{6})
-\end{split}
-\end{equation}
-}
-\normalsize
-\begin{align*}
-	k_{3} - h_{n}f_{n} &= h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n} + \beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg) + h_{n}^{4}\bigg(\frac{1}{6}D_{3}^{3}f_{n} + \frac{1}{2}\beta_{32}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}\bigg)
-\end{align*}
-
-\begin{align*}
-	h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}} &= h_{n}^{2}D_{4}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\beta_{42}(k_{2}-h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}} \\
-	&+ h_{n}\beta_{43}(k_{3}-h_{n}f_{n})f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	&= h_{n}^{2}D_{4}f_{n} + h_{n}\beta_{42}\bigg(h_{n}^{2}D_{2}f_{n} + \frac{h_{n}^{3}}{2!}D_{2}^{2}f_{n} + \frac{h_{n}^{4}}{3!}D_{2}^{3}f_{n}\bigg)f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	&+ h_{n}\beta_{43}\bigg[h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n} + \beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg) \\
-	&+ h_{n}^{4}\bigg(\frac{1}{6}D_{3}^{3}f_{n} + \frac{1}{2}\beta_{32}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \beta_{32}(D_{2}f_{n})D_{3}f_{y_{|_{n}}}\bigg)\bigg]f_{y}(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	&= h_{n}^{2}D_{4}f_{n} + h_{n}^{3}\bigg(\beta_{42}(D_{2}f_{n}) + \beta_{43}(D_{3}f_{n})\bigg)f_{y_{|_{n}}} \\
-	&+ h_{n}^{4}\bigg(\frac{1}{2}\beta_{43}(D_{3}^{2}f_{n}) + \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n}) + \frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})\bigg)f_{y_{|_{n}}} \\
-	&+ h_{n}^{5}\bigg(\frac{1}{6}\beta_{43}D_{3}^{3}f_{n} + \frac{1}{2}\beta_{32}\beta_{43}f_{y_{|_{n}}}D_{2}^{2}f_{n} + \beta_{32}\beta_{43}(D_{2}f_{n})D_{3}f_{y_{|_{n}}} + \frac{1}{6}\beta_{42}(D_{2}^{3}f_{n})\bigg)f_{y_{|_{n}}}
-\end{align*}
-
-\begin{align*}
-	h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} &= \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\\
-	&\bigg[h_{n}^{2}D_{4} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-	&= h_{n}D_{4}\bigg[h_{n}^{2}D_{4}f_{n} + h_{n}^{3}\bigg(\beta_{42}(D_{2}f_{n}) + \beta_{43}(D_{3}f_{n})\bigg)f_{y_{|_{n}}}\bigg]\\
-	&+ h_{n}D_{4}\bigg[ h_{n}^{4}\bigg(\frac{1}{2}\beta_{43}(D_{3}^{2}f_{n}) + \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n}) + \frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})\bigg)f_{y_{|_{n}}}\bigg] \\
-	&+ \beta_{42}(k_{2}-h_{n}f_{n})\frac{\partial}{\partial}\bigg[h_{n}^{2}D_{4}f_{n} + h_{n}^{3}\bigg(\beta_{42}(D_{2}f_{n}) + \beta_{43}(D_{3}f_{n})\bigg)f_{y_{|_{n}}}\bigg] \\
-	&+ \beta_{43}(k_{3}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg[h_{n}^{2}D_{4}f_{n} + h_{n}^{3}\bigg(\beta_{42}(D_{2}f_{n}) + \beta_{43}(D_{3}f_{n})\bigg)f_{y_{|_{n}}}\bigg] + .....\\
-	&= h_{n}^{3}D_{4}^{2}f_{n} + h_{n}^{4}\bigg(\beta_{42}(D_{2}f_{n}) + \beta_{43}(D_{3}f_{n})\bigg)D_{4}f_{y_{|_{n}}}\\
-	&+ h_{n}^{5} \bigg(\frac{1}{2}\beta_{43}(D_{3}^{2}f_{n}) + \beta_{32}\beta_{43}f_{y_{|_{n}}}(D_{2}f_{n}) + \frac{1}{2}\beta_{42}(D_{2}^{2}f_{n})\bigg)D_{4}f_{y_{|_{n}}}\\
-	&+ h_{n}^{2}\beta_{42}\bigg(h_{n}^{2}D_{2}f_{n} + \frac{h^{3}}{2!}D_{2}^{2}f_{n}\bigg)(D_{4}f_{n})f_{yy_{|_{n}}} \\
-	&+ h_{n}^{3}\beta_{42}(h_{n}^{2}D_{2}f_{n})\bigg(\beta_{42}(D_{2}f_{n}) + \beta_{43}(D_{3}f_{n})\bigg)f_{yy_{|_{n}}}\\
-	&+ h_{n}^{2}\beta_{43}\bigg[h_{n}^{2}D_{3}f_{n} + h_{n}^{3}\bigg(\frac{1}{2}D_{3}^{2}f_{n} + \beta_{32}f_{y_{|_{n}}}D_{2}f_{n}\bigg)\bigg](D_{4}f_{n})f_{yy_{|_{n}}} \\
-	&+ h_{n}^{3}\beta_{43}\bigg(h_{n}^{2}D_{3}f_{n}\bigg)\bigg(\beta_{42}(D_{2}f_{n}) + \beta_{43}(D_{3}f_{n})\bigg)f_{yy_{|_{n}}}
-\end{align*}
-
-\begin{align*}
-	h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} &= \bigg(h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg)\\
-	&\bigg[h_{n}^{2}D_{4} + h_{n}\sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-\end{align*}
-
-
-\normalsize
-\begin{equation}
-	\begin{split}
-		k_{4} &= h_{n}\sum_{t=0}^{\infty}\frac{\bigg(h_{n}D_{4}+\sum_{j=2}^{3}\beta_{4j}(k_{j}-h_{n}f_{n})\frac{\partial}{\partial y}\bigg)^{t}}{t!}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-		&= h_{n}f_{n} + h_{n}\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{2}}{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}}\\
-		&+  h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{3}}{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} +  h_{n}\frac{\bigg[h_{n}D_{4} + \sum_{j=2}^{3}\beta_{4j}(k_{j} - h_{n}f_{n})\frac{\partial}{\partial y}\bigg]^{4}}{2}f(x,y)\big\vert_{x = x_{n}, y= y_{n}} + ...
-	\end{split}
-\end{equation}
-
-
-
-\large
-\begin{align*}
-k_{4} =& hf + h^{2}D_{4}f + h^{3}\bigg(\frac{1}{2}D_{4}^{2}f + \beta_{42}f_{y}D_{2}f + \beta_{43}f_{y}D_{3}f\bigg) + h^{4}\bigg[\frac{1}{6}D^{3}_{4}f + \frac{1}{2}\beta_{42}f_{y}D_{2}^{2}f\\
- 	  +& \beta_{32}\beta_{43}(f_{y})^{2}D_{2}f + \frac{1}{2}\beta_{43}f_{y}D_{3}^{2}f + \beta_{42}D_{2}fD_{4}f_{y}	+ \beta_{43}D_{3}fD_{4}f_{y}\bigg] +  h^{5}\bigg(\frac{1}{24}D_{4}^{4}f + \frac{1}{6}\beta_{42}f_{y}D_{2}^{3}f\\
- 	  +&\frac{1}{2}\beta_{32}\beta_{43}(f_{y})^{2}D_{2}^{2}f + \beta_{32}\beta_{43}f_{y}D_{2}fD_{3}f_{y} + \frac{1}{6}\beta_{43}f_{y}D_{3}^{3}f + \frac{1}{2}\beta_{42}D_{4}f_{y}D_{2}^{2}f + \frac{1}{2}\beta_{43}D_{4}f_{y}D_{3}^{2}f\\
- 	  +&\frac{1}{2}\beta_{42}^{2}f_{yy}D_{2}^{2}f + \beta_{42}\beta_{43}f_{yy}D_{2}fD_{3}f + \frac{1}{2}\beta_{43}^{2}f_{yy}D_{3}^{2}f + \frac{1}{2}\beta_{42}D_{2}fD_{4}^{2}f_{y}\\
- 	  +& \frac{1}{2}\beta_{43}D_{3}fD_{4}^{2}f_{y} + \beta_{43}\beta_{32}f_{y}D_{2}fD_{4}f_{y}\bigg)\bigg\vert_{n} + O(h^{6})
-\end{align*}
-
-\begin{align*}
-	y_{n+1} - y_{n} &= w_{1}k_{1} + w_{2}k_{2} + w_{3}k_{3} + w_{4}k_{4}\\
-					&= \bigg[hf + \frac{h^{2}}{2!}Df + \frac{h^{3}}{3!}\bigg(D^{2}f+f_{y}Df\bigg)  + \frac{h^{4}}{4!}\bigg(D^{3}f + f_{y}D^{2}f + f_{y}^{2}Df + 3DfDf_{y}\bigg)\\ 
-					&+ \frac{h^{5}}{5!}\bigg(D^{4}f+6DfD^{2}f_{y} + f_{y}^{2}D^{2}f + f_{y}^{3}Df + 3f_{yy}(Df)^{2} + f_{y}D^{3}f + 7f_{y}DfDf_{y}\bigg)\bigg]\\
-					&= w_{1}hf + w_{2}\bigg\{hf + \frac{h^{2}}{1!}D_{2}f + \frac{h^{3}}{2!}D_{2}^{2}f + \frac{h^{4}}{3!}D_{2}^{3}f + \frac{h^{5}}{4!}D_{2}^{4}f\bigg\}\\ 
-					&+ w_{3}\bigg\{hf + h^{2}D_{3}f + h^{3}\bigg(\frac{1}{2}D_{3}^{2}f + f_{y}\beta_{32}D_{2}f\bigg) + h^{4}\bigg(\frac{1}{6}D_{3}^{3}f + \frac{1}{2}f_{y}\beta_{32}D_{2}^{2}f + \beta_{32}D_{3}f_{y}D_{2}f\bigg) \\
-					&+ h^{5}\bigg(\frac{1}{24}D^{4}_{3}f + \frac{\beta_{32}}{6}f_{y}D_{2}^{3}f + \frac{\beta_{32}^{2}}{2}f_{yy}(D_{2}f)^{2} + \frac{\beta_{32}}{2}D_{3}f_{y}D_{2}^{2}f + \frac{\beta_{32}}{2}D_{3}^{2}f_{y}D_{2}f\bigg)\bigg\}\\
-					&+ w_{4} \bigg\{hf + h^{2}D_{4}f + h^{3}\bigg(\frac{1}{2}D_{4}^{2}f + \beta_{42}f_{y}D_{2}f + \beta_{43}f_{y}D_{3}f\bigg) + h^{4}\bigg(\frac{1}{6}D^{3}_{4}f + \frac{1}{2}\beta_{42}f_{y}D_{2}^{2}f\\
-					&+ \beta_{32}\beta_{43}(f_{y})^{2}D_{2}f + \frac{1}{2}\beta_{43}f_{y}D_{3}^{2}f + \beta_{42}D_{2}fD_{4}f_{y}	+ \beta_{43}D_{3}fD_{4}f_{y}\bigg) +  h^{5}\bigg(\frac{1}{24}D_{4}^{4}f + \frac{1}{6}\beta_{42}f_{y}D_{2}^{3}f\\
-					&+\frac{1}{2}\beta_{32}\beta_{43}(f_{y})^{2}D_{2}^{2}f + \beta_{32}\beta_{43}f_{y}D_{2}fD_{3}f_{y} + \frac{1}{6}\beta_{43}f_{y}D_{3}^{3}f + \frac{1}{2}\beta_{42}D_{4}f_{y}D_{2}^{2}f + \frac{1}{2}\beta_{43}D_{4}f_{y}D_{3}^{2}f\\
-					&+\frac{1}{2}\beta_{42}^{2}f_{yy}D_{2}^{2}f + \beta_{42}\beta_{43}f_{yy}D_{2}fD_{3}f + \frac{1}{2}\beta_{43}^{2}f_{yy}D_{3}^{2}f + \frac{1}{2}\beta_{42}D_{2}fD_{4}^{2}f_{y}\\
-					&+ \frac{1}{2}\beta_{43}D_{3}fD_{4}^{2}f_{y} + \beta_{43}\beta_{32}f_{y}D_{2}fD_{4}f_{y}\bigg)\bigg\}				
-\end{align*}
-
-\begin{align*}
-	w_{1} + w_{2} + w_{3} + w_{4} &= 1\\
-	w_{2}D_{2}f + w_{3}D_{3}f + w_{4}D_{4}f&= \frac{1}{2}Df\\
-	\frac{1}{2}w_{2}D_{2}^{2}f + w_{3}\bigg(\frac{1}{2}D_{3}^{2}f + f_{y}\beta_{32}D_{2}f\bigg) & \\
-	+ w_{4}\bigg(\frac{1}{2}D_{4}^{2}f + \beta_{42}f_{y}D_{2}f + \beta_{43}f_{y}D_{3}f\bigg) &= \frac{1}{3!}\bigg(D^{2}f+f_{y}Df\bigg)\\
-	\frac{1}{3!}w_{2}D_{2}^{3}f + w_{3}\bigg(\frac{1}{6}D_{3}^{3}f + \frac{1}{2}f_{y}\beta_{32}D_{2}^{2}f + \beta_{32}D_{3}f_{y}D_{2}f\bigg) & \\
-	+w_{4}\bigg(\frac{1}{6}D^{3}_{4}f + \frac{1}{2}\beta_{42}f_{y}D_{2}^{2}f+ \beta_{32}\beta_{43}(f_{y})^{2}D_{2}f & \\
-	+ \frac{1}{2}\beta_{43}f_{y}D_{3}^{2}f + \beta_{42}D_{2}fD_{4}f_{y}	+ \beta_{43}D_{3}fD_{4}f_{y}\bigg) &= \frac{1}{4!}\bigg(D^{3}f + f_{y}D^{2}f + f_{y}^{2}Df + 3DfDf_{y}\bigg)
-\end{align*}
-
-\begin{align*}
-	D_{3} &= \alpha_{3}\frac{\partial}{\partial x} + \sum_{j=1}^{2}\beta_{3j}f_{n}\frac{\partial}{\partial y}\\
-	D_{2}f&= \alpha_{2}\frac{\partial f}{\partial x} + \beta_{21}f_{n}\frac{\partial f}{\partial y}
-\end{align*}
-
+	\begin{align*}
+		k_{4} =& hf + h^{2}D_{4}f + h^{3}\bigg(\frac{1}{2}D_{4}^{2}f + \beta_{42}f_{y}D_{2}f + \beta_{43}f_{y}D_{3}f\bigg) + h^{4}\bigg[\frac{1}{6}D^{3}_{4}f + \frac{1}{2}\beta_{42}f_{y}D_{2}^{2}f\\
+		+& \beta_{32}\beta_{43}(f_{y})^{2}D_{2}f + \frac{1}{2}\beta_{43}f_{y}D_{3}^{2}f + \beta_{42}D_{2}fD_{4}f_{y}	+ \beta_{43}D_{3}fD_{4}f_{y}\bigg] +  h^{5}\bigg(\frac{1}{24}D_{4}^{4}f + \frac{1}{6}\beta_{42}f_{y}D_{2}^{3}f\\
+		+&\frac{1}{2}\beta_{32}\beta_{43}(f_{y})^{2}D_{2}^{2}f + \beta_{32}\beta_{43}f_{y}D_{2}fD_{3}f_{y} + \frac{1}{6}\beta_{43}f_{y}D_{3}^{3}f + \frac{1}{2}\beta_{42}D_{4}f_{y}D_{2}^{2}f + \frac{1}{2}\beta_{43}D_{4}f_{y}D_{3}^{2}f\\
+		+&\frac{1}{2}\beta_{42}^{2}f_{yy}D_{2}^{2}f + \beta_{42}\beta_{43}f_{yy}D_{2}fD_{3}f + \frac{1}{2}\beta_{43}^{2}f_{yy}D_{3}^{2}f + \frac{1}{2}\beta_{42}D_{2}fD_{4}^{2}f_{y}\\
+		+& \frac{1}{2}\beta_{43}D_{3}fD_{4}^{2}f_{y} + \beta_{43}\beta_{32}f_{y}D_{2}fD_{4}f_{y}\bigg)\bigg\vert_{n} + O(h^{6})
+	\end{align*}
+	
+	\begin{align*}
+		y_{n+1} - y_{n} &= w_{1}k_{1} + w_{2}k_{2} + w_{3}k_{3} + w_{4}k_{4}\\
+		&= \bigg[hf + \frac{h^{2}}{2!}Df + \frac{h^{3}}{3!}\bigg(D^{2}f+f_{y}Df\bigg)  + \frac{h^{4}}{4!}\bigg(D^{3}f + f_{y}D^{2}f + f_{y}^{2}Df + 3DfDf_{y}\bigg)\\ 
+		&+ \frac{h^{5}}{5!}\bigg(D^{4}f+6DfD^{2}f_{y} + f_{y}^{2}D^{2}f + f_{y}^{3}Df + 3f_{yy}(Df)^{2} + f_{y}D^{3}f + 7f_{y}DfDf_{y}\bigg)\bigg]\\
+		&= w_{1}hf + w_{2}\bigg\{hf + \frac{h^{2}}{1!}D_{2}f + \frac{h^{3}}{2!}D_{2}^{2}f + \frac{h^{4}}{3!}D_{2}^{3}f + \frac{h^{5}}{4!}D_{2}^{4}f\bigg\}\\ 
+		&+ w_{3}\bigg\{hf + h^{2}D_{3}f + h^{3}\bigg(\frac{1}{2}D_{3}^{2}f + f_{y}\beta_{32}D_{2}f\bigg) + h^{4}\bigg(\frac{1}{6}D_{3}^{3}f + \frac{1}{2}f_{y}\beta_{32}D_{2}^{2}f + \beta_{32}D_{3}f_{y}D_{2}f\bigg) \\
+		&+ h^{5}\bigg(\frac{1}{24}D^{4}_{3}f + \frac{\beta_{32}}{6}f_{y}D_{2}^{3}f + \frac{\beta_{32}^{2}}{2}f_{yy}(D_{2}f)^{2} + \frac{\beta_{32}}{2}D_{3}f_{y}D_{2}^{2}f + \frac{\beta_{32}}{2}D_{3}^{2}f_{y}D_{2}f\bigg)\bigg\}\\
+		&+ w_{4} \bigg\{hf + h^{2}D_{4}f + h^{3}\bigg(\frac{1}{2}D_{4}^{2}f + \beta_{42}f_{y}D_{2}f + \beta_{43}f_{y}D_{3}f\bigg) + h^{4}\bigg(\frac{1}{6}D^{3}_{4}f + \frac{1}{2}\beta_{42}f_{y}D_{2}^{2}f\\
+		&+ \beta_{32}\beta_{43}(f_{y})^{2}D_{2}f + \frac{1}{2}\beta_{43}f_{y}D_{3}^{2}f + \beta_{42}D_{2}fD_{4}f_{y}	+ \beta_{43}D_{3}fD_{4}f_{y}\bigg) +  h^{5}\bigg(\frac{1}{24}D_{4}^{4}f + \frac{1}{6}\beta_{42}f_{y}D_{2}^{3}f\\
+		&+\frac{1}{2}\beta_{32}\beta_{43}(f_{y})^{2}D_{2}^{2}f + \beta_{32}\beta_{43}f_{y}D_{2}fD_{3}f_{y} + \frac{1}{6}\beta_{43}f_{y}D_{3}^{3}f + \frac{1}{2}\beta_{42}D_{4}f_{y}D_{2}^{2}f + \frac{1}{2}\beta_{43}D_{4}f_{y}D_{3}^{2}f\\
+		&+\frac{1}{2}\beta_{42}^{2}f_{yy}D_{2}^{2}f + \beta_{42}\beta_{43}f_{yy}D_{2}fD_{3}f + \frac{1}{2}\beta_{43}^{2}f_{yy}D_{3}^{2}f + \frac{1}{2}\beta_{42}D_{2}fD_{4}^{2}f_{y}\\
+		&+ \frac{1}{2}\beta_{43}D_{3}fD_{4}^{2}f_{y} + \beta_{43}\beta_{32}f_{y}D_{2}fD_{4}f_{y}\bigg)\bigg\}				
+	\end{align*}
+	
+	
+	\begin{align*}
+		w_{1} + w_{2} + w_{3} + w_{4} &= 1\\
+		w_{2}D_{2}f + w_{3}D_{3}f + w_{4}D_{4}f&= \frac{1}{2}Df\\
+		\frac{1}{2}w_{2}D_{2}^{2}f + w_{3}\bigg(\frac{1}{2}D_{3}^{2}f + f_{y}\beta_{32}D_{2}f\bigg) & \\
+		+ w_{4}\bigg(\frac{1}{2}D_{4}^{2}f + \beta_{42}f_{y}D_{2}f + \beta_{43}f_{y}D_{3}f\bigg) &= \frac{1}{3!}\bigg(D^{2}f+f_{y}Df\bigg)\\
+		\frac{1}{3!}w_{2}D_{2}^{3}f + w_{3}\bigg(\frac{1}{6}D_{3}^{3}f + \frac{1}{2}f_{y}\beta_{32}D_{2}^{2}f + \beta_{32}D_{3}f_{y}D_{2}f\bigg) & \\
+		+w_{4}\bigg(\frac{1}{6}D^{3}_{4}f + \frac{1}{2}\beta_{42}f_{y}D_{2}^{2}f+ \beta_{32}\beta_{43}(f_{y})^{2}D_{2}f & \\
+		+ \frac{1}{2}\beta_{43}f_{y}D_{3}^{2}f + \beta_{42}D_{2}fD_{4}f_{y}	+ \beta_{43}D_{3}fD_{4}f_{y}\bigg) &= \frac{1}{4!}\bigg(D^{3}f + f_{y}D^{2}f + f_{y}^{2}Df + 3DfDf_{y}\bigg)
+	\end{align*}
+	
+	\begin{align*}
+		\omega_{1} + \omega_{2} + \omega_{3} + \omega_{4} &= 1\\
+		\omega_{2}D_{2}f + \omega_{3}D_{3}f + \omega_{4}D_{4}f &= \frac{1}{2}Df\\
+		\therefore 
+		\frac{1}{2}\omega_{2}D_{2}^{2}f + \frac{1}{2}\omega_{3}D_{3}^{2}f + \frac{1}{2}\omega_{4}D_{2}^{4}&= \frac{1}{6}D^{2}f\\
+		\omega_{3}\beta_{32}D_{2}f + \omega_{4}\bigg(\beta_{42}D_{2}f + \beta_{43}D_{3}f\bigg) &= \frac{1}{6}Df\\
+		\frac{1}{6}\omega_{2}D_{2}^{3}f + \frac{1}{6}\omega_{3}D_{3}^{3}f + \frac{1}{6}\omega_{4}D_{4}^{3}f &= \frac{1}{24}D^{3}f\\
+		\frac{1}{2}\omega_{3}\beta_{32}D_{2}^{2}f + \frac{1}{2}\omega_{4}\beta_{42}D_{2}^{2}f + \frac{1}{2}\omega_{4}\beta_{43}D_{3}^{2}f &= \frac{1}{24}D^{2}f\\
+		\omega_{4}\beta_{32}\beta_{43}D_{2}f &= \frac{1}{24}Df\\
+		\omega_{3}\beta_{32}D_{2}fD_{3}f_{y} + \omega_{4}\beta_{42}D_{2}fD_{4}f_{y} + \omega_{4}\beta_{43}D_{3}fD_{4}f_{y} &= \frac{1}{8}DfDf_{y}
+	\end{align*}
+	
+	\begin{align*}
+		\omega_{1} + \omega_{2} + \omega_{3} + \omega_{4} &= 1\\
+		\omega_{2}\bigg(\frac{D_{2}f}{Df}\bigg) + \omega_{3}\bigg(\frac{D_{3}f}{Df}\bigg) + \omega_{4}\bigg(\frac{D_{4}f}{Df}\bigg) &= \frac{1}{2}\\
+		\omega_{2}\bigg(\frac{D_{2}^{2}f}{D^{2}f}\bigg) + \omega_{3}\bigg(\frac{D_{3}^{2}f}{D^{2}f}\bigg) + \omega_{4}\bigg(\frac{D_{4}^{2}f}{D^{2}f}\bigg) &= \frac{1}{3}\\
+		\omega_{3}\beta_{32}\bigg(\frac{D_{2}f}{Df}\bigg) + \omega_{4}\bigg\{\beta_{42}\bigg(\frac{D_{2}f}{Df}\bigg) + 
+		\beta_{43}\bigg(\frac{D_{3}f}{Df}\bigg)\bigg\} &= \frac{1}{6}\\
+		\omega_{2}\bigg(\frac{D_{2}^{3}f}{D^{3}f}\bigg) + 
+		\omega_{3}\bigg(\frac{D_{3}^{3}f}{D^{3}f}\bigg) + 
+		\omega_{4}\bigg(\frac{D_{4}^{3}f}{D^{3}f}\bigg) &= \frac{1}{4}\\
+		\omega_{3}\beta_{32}\bigg(\frac{D_{2}^{2}f}{D^{2}f}\bigg) + \omega_{4}\bigg\{\beta_{42}\bigg(\frac{D_{2}^{2}f}{D^{2}f}\bigg) +
+		\beta_{43}\bigg(\frac{D_{3}^{2}f}{D^{2}f}\bigg)\bigg\} &= \frac{1}{12}\\
+		\omega_{4}\beta_{32}\beta_{43}\bigg(\frac{D_{2}f}{Df}\bigg) &= \frac{1}{24}\\
+		\omega_{3}\beta_{32}\bigg(\frac{D_{2}f}{Df}\bigg)\bigg(\frac{D_{3}f_{y}}{Df_{y}}\bigg) + 
+		\omega_{4}\bigg\{\beta_{42}\bigg(\frac{D_{2}f}{Df}\bigg)\bigg(\frac{D_{4}f_{y}}{Df_{y}}\bigg) + 
+		\beta_{43}\bigg(\frac{D_{3}f}{Df}\bigg)\bigg(\frac{D_{4}f_{y}}{Df_{y}}\bigg)\bigg\} &= \frac{1}{8}
+	\end{align*}
+	
+	In order to make a general theory that works for all differential equation, the value of $\omega_{i}, \alpha_{i}, \beta_{ij}$ has to be independent of $f(x,y)$.
+	
+	\begin{align*}
+		D &= \frac{\partial}{\partial x} + f_{n}\frac{\partial}{\partial y}\\
+		D_{i}&= \alpha_{i}\frac{\partial }{\partial x} + \sum_{j=1}^{i-1}\beta_{ij}f_{n}\frac{\partial }{\partial y}
+	\end{align*}
+	
+	$\frac{D_{i}f}{Df} = \frac{\alpha_{i}\frac{\partial f}{\partial x} + \sum_{j=1}^{i-1}\beta_{ij}f_{n}\frac{\partial f}{\partial y}}{\frac{\partial f}{\partial x} + f_{n}\frac{\partial f}{\partial y}}$
+	
+	$\frac{D_{i}f_{y}}{Df_{y}} = \frac{\alpha_{i}\frac{\partial f_{y}}{\partial x} + \sum_{j=1}^{i-1}\beta_{ij}f_{n}\frac{\partial f_{y}}{\partial y}}{\frac{\partial f_{y}}{\partial x} + f_{n}\frac{\partial f_{y}}{\partial y}}$
+	
+	
+	
+	The only way to make these expressions free of $f(x,y)$ is to let the numerator and denominator cancels each other. That will be only possible when, $$\frac{\alpha_{i}\frac{\partial f}{\partial x} + \sum_{j=1}^{i-1}\beta_{ij}f_{n}\frac{\partial f}{\partial y}}{\frac{\partial f}{\partial x} + f_{n}\frac{\partial f}{\partial y}}\Rightarrow \frac{\alpha_{i}\frac{\partial f}{\partial x} + \sum_{j=1}^{i-1}\beta_{ij}f_{n}\frac{\partial f}{\partial y}}{\alpha_{i}\frac{\partial f}{\partial x} + \alpha_{i}f_{n}\frac{\partial f}{\partial y}}\cdot\alpha_{i}$$
+	
+	$$\frac{\alpha_{i}\frac{\partial f_{y}}{\partial x} + \sum_{j=1}^{i-1}\beta_{ij}f_{n}\frac{\partial f_{y}}{\partial y}}{\frac{\partial f_{y}}{\partial x} + f_{n}\frac{\partial f_{y}}{\partial y}}\Rightarrow \frac{\alpha_{i}\frac{\partial f_{y}}{\partial x} + \sum_{j=1}^{i-1}\beta_{ij}f_{n}\frac{\partial f_{y}}{\partial y}}{\alpha_{i}\frac{\partial f_{y}}{\partial x} + \alpha_{i}f_{n}\frac{\partial f_{y}}{\partial y}}\cdot\alpha_{i}$$
+	
+	$$\therefore \alpha_{i} = \sum_{j=1}^{i-1}\beta_{ij} \text{ and that infers to  } D_{i}=\alpha_{i} D$$
+	
+	\begin{align*}
+		\omega_{1} + \omega_{2} + \omega_{3} + \omega_{4} &= 1\\
+		\omega_{2}\alpha_{2} + \omega_{3}\alpha_{3} + \omega_{4}\alpha_{4} &= \frac{1}{2}\\
+		\omega_{2}\alpha_{2}^{2} + \omega_{3}\alpha_{3}^{2} + \omega_{4}\alpha_{4}^{2} &= \frac{1}{3}\\
+		\omega_{3}\beta_{32}\alpha_{2} + \omega_{4}\bigg(\beta_{42}\alpha_{2} + 
+		\beta_{43}\alpha_{3}\bigg) &= \frac{1}{6}\\
+		\omega_{2}\alpha_{2}^{3} + 
+		\omega_{3}\alpha_{3}^{3} + 
+		\omega_{4}\alpha_{4}^{3} &= \frac{1}{4}\\
+		\omega_{3}\beta_{32}\alpha_{2}^{2} + \omega_{4}\bigg(\beta_{42}\alpha_{2}^{2} +
+		\beta_{43}\alpha_{3}^{2}\bigg) &= \frac{1}{12}\\
+		\omega_{4}\beta_{32}\beta_{43}\alpha_{2} &= \frac{1}{24}\\
+		\omega_{3}\beta_{32}\alpha_{2}\alpha_{3}+ 
+		\omega_{4}\bigg(\beta_{42}\alpha_{2}\alpha_{4} + 
+		\beta_{43}\alpha_{3}\alpha_{4}\bigg) &= \frac{1}{8}
+	\end{align*}
+	
+	
 \end{document}
